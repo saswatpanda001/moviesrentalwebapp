@@ -1,0 +1,71 @@
+﻿@model IEnumerable<MoviesRental.Models.Review>
+
+@{
+    ViewData["Title"] = "Reviews";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="max-w-6xl mx-auto mt-10">
+
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-3xl font-bold text-gray-900">Reviews</h1>
+
+        <a asp-action="Create"
+           class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition">
+            + Create New
+        </a>
+    </div>
+
+    <div class="overflow-x-auto bg-white shadow-md rounded-xl border border-gray-200">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Rating</th>
+                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Comment</th>
+                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Created At</th>
+                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Movie</th>
+                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">User</th>
+                    <th class="px-6 py-3"></th>
+                </tr>
+            </thead>
+
+            <tbody class="divide-y divide-gray-200">
+                @foreach (var item in Model)
+                {
+                    <tr class="hover:bg-gray-50 transition">
+                        <td class="px-6 py-4 text-sm text-gray-800">
+                            @Html.DisplayFor(modelItem => item.Rating)
+                        </td>
+
+                        <td class="px-6 py-4 text-sm text-gray-800">
+                            @Html.DisplayFor(modelItem => item.Comment)
+                        </td>
+
+                        <td class="px-6 py-4 text-sm text-gray-800">
+                            @Html.DisplayFor(modelItem => item.CreatedAt)
+                        </td>
+
+                        <td class="px-6 py-4 text-sm text-gray-800">
+                            @Html.DisplayFor(modelItem => item.Movie.MovieId)
+                        </td>
+
+                        <td class="px-6 py-4 text-sm text-gray-800">
+                            @Html.DisplayFor(modelItem => item.User.UserId)
+                        </td>
+
+                        <td class="px-6 py-4 text-sm text-gray-800 flex gap-3">
+                            <a asp-action="Edit" asp-route-id="@item.ReviewId"
+                               class="text-blue-600 hover:underline">Edit</a>
+
+                            <a asp-action="Details" asp-route-id="@item.ReviewId"
+                               class="text-green-600 hover:underline">Details</a>
+
+                            <a asp-action="Delete" asp-route-id="@item.ReviewId"
+                               class="text-red-600 hover:underline">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

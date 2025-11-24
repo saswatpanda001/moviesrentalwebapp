@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MoviesRental.Models.Movie>
+
+@{
+    ViewData["Title"] = "Movies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="max-w-6xl mx-auto mt-10">
+
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-3xl font-bold text-gray-800">Movies</h1>
+
+        <a asp-action="Create"
+           class="px-5 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700">
+            + Add New Movie
+        </a>
+    </div>
+
+    <div class="overflow-x-auto bg-white shadow-lg rounded-xl border border-gray-200">
+        <table class="min-w-full text-left text-sm text-gray-700">
+            <thead class="bg-gray-100 text-gray-700 uppercase text-xs">
+                <tr>
+                    <th class="px-6 py-3">Title</th>
+                    <th class="px-6 py-3">Genre</th>
+                    <th class="px-6 py-3">Release Year</th>
+                    <th class="px-6 py-3">Description</th>
+                    <th class="px-6 py-3">Stock</th>
+                    <th class="px-6 py-3">Rental Price</th>
+                    <th class="px-6 py-3 text-center">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="border-b hover:bg-gray-50">
+                        <td class="px-6 py-4 font-medium">@item.Title</td>
+                        <td class="px-6 py-4">@item.Genre</td>
+                        <td class="px-6 py-4">@item.ReleaseYear</td>
+                        <td class="px-6 py-4">@item.Description</td>
+                        <td class="px-6 py-4">@item.Stock</td>
+                        <td class="px-6 py-4">@item.RentalPrice</td>
+
+                        <td class="px-6 py-4 text-center space-x-3">
+
+                            <a asp-action="Edit" asp-route-id="@item.MovieId"
+                               class="text-blue-600 hover:text-blue-800 font-medium">
+                                Edit
+                            </a>
+
+                            <a asp-action="Details" asp-route-id="@item.MovieId"
+                               class="text-gray-700 hover:text-gray-900 font-medium">
+                                Details
+                            </a>
+
+                            <a asp-action="Delete" asp-route-id="@item.MovieId"
+                               class="text-red-600 hover:text-red-800 font-medium">
+                                Delete
+                            </a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>

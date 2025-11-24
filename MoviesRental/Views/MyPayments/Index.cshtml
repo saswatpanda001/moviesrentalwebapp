@@ -1,0 +1,86 @@
+﻿@model IEnumerable<MoviesRental.Models.Payment>
+@{
+    ViewData["Title"] = "My Payments";
+}
+
+<div class="container">
+    <h2>My Payments</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="text-center py-5">
+            <h4>No payments found</h4>
+            <p>You haven't made any payments yet.</p>
+            <a href="@Url.Action("Index", "MyMovies")" class="btn btn-primary">Browse Movies</a>
+        </div>
+    }
+    else
+    {
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Payment ID</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Method</th>
+                                <th>Status</th>
+                                <th>Movie</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var payment in Model)
+                            {
+                                <tr>
+                                    <td>#@payment.PaymentId</td>
+                                    <td>@payment.PaidOn.ToString("MMM dd, yyyy hh:mm tt")</td>
+                                    <td>
+                                        <strong>@payment.Amount.ToString("C2")</strong>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-info">@payment.PaymentMethod</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge @GetStatusBadgeClass(payment.Status)">@payment.Status</span>
+                                    </td>
+                                    <td>
+                                        @if (payment.Rental?.Movie != null)
+                                        {
+                                            <strong>@payment.Rental.Movie.Title</strong>
+                                            <br>
+                                            <small class="text-muted">Rental #@payment.RentalId</small>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">N/A</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("Details", "Payments", new { id = payment.PaymentId })"
+                                           class="btn btn-sm btn-outline-primary">Details</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@functions {
+    public string GetStatusBadgeClass(string status)
+    {
+        return status switch
+        {
+            "Completed" => "bg-success",
+            "Pending" => "bg-warning",
+            "Failed" => "bg-danger",
+            _ => "bg-secondary"
+        };
+    }
+}

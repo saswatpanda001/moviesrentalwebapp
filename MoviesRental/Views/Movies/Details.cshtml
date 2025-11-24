@@ -1,0 +1,56 @@
+﻿@model MoviesRental.Models.Movie
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="max-w-3xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-xl border border-gray-200">
+    <h1 class="text-3xl font-bold mb-6 text-gray-800">Movie Details</h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
+
+        <div>
+            <p class="text-sm text-gray-500">Title</p>
+            <p class="text-lg font-semibold text-gray-800">@Html.DisplayFor(m => m.Title)</p>
+        </div>
+
+        <div>
+            <p class="text-sm text-gray-500">Genre</p>
+            <p class="text-lg font-semibold text-gray-800">@Html.DisplayFor(m => m.Genre)</p>
+        </div>
+
+        <div>
+            <p class="text-sm text-gray-500">Release Year</p>
+            <p class="text-lg font-semibold text-gray-800">@Html.DisplayFor(m => m.ReleaseYear)</p>
+        </div>
+
+        <div>
+            <p class="text-sm text-gray-500">Stock</p>
+            <p class="text-lg font-semibold text-gray-800">@Html.DisplayFor(m => m.Stock)</p>
+        </div>
+
+        <div class="sm:col-span-2">
+            <p class="text-sm text-gray-500">Description</p>
+            <p class="text-base text-gray-700 leading-relaxed">@Html.DisplayFor(m => m.Description)</p>
+        </div>
+
+        <div>
+            <p class="text-sm text-gray-500">Rental Price</p>
+            <p class="text-lg font-semibold text-gray-800">@Html.DisplayFor(m => m.RentalPrice)</p>
+        </div>
+
+    </div>
+
+    <div class="mt-8 flex items-center space-x-4">
+        <a asp-action="Edit" asp-route-id="@Model?.MovieId"
+           class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 shadow-md">
+            Edit
+        </a>
+
+        <a asp-action="Index"
+           class="px-5 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 shadow-md">
+            Back to List
+        </a>
+    </div>
+</div>

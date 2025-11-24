@@ -1,0 +1,103 @@
+﻿@model MoviesRental.Models.RegisterViewModel
+@{
+    ViewData["Title"] = "Create Account";
+}
+
+<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8">
+        <div>
+            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+                Create your account
+            </h2>
+            <p class="mt-2 text-center text-sm text-gray-600">
+                Or
+                <a href="@Url.Action("Login")" class="font-medium text-blue-600 hover:text-blue-500">
+                    sign in to your existing account
+                </a>
+            </p>
+        </div>
+        <form class="mt-8 space-y-6" asp-action="Register" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-red-600"></div>
+
+            <div class="space-y-4">
+                <div>
+                    <label asp-for="Name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                    <input asp-for="Name" type="text" required
+                           class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                           placeholder="Enter your full name">
+                    <span asp-validation-for="Name" class="text-red-600 text-sm"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Email" class="block text-sm font-medium text-gray-700">Email address</label>
+                    <input asp-for="Email" type="email" autocomplete="email" required
+                           class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                           placeholder="Enter your email">
+                    <span asp-validation-for="Email" class="text-red-600 text-sm"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Phone" class="block text-sm font-medium text-gray-700">Phone (Optional)</label>
+                    <input asp-for="Phone" type="tel"
+                           class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                           placeholder="Enter your phone number">
+                    <span asp-validation-for="Phone" class="text-red-600 text-sm"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input asp-for="Password" type="password" autocomplete="new-password" required
+                           class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                           placeholder="Create a password">
+                    <span asp-validation-for="Password" class="text-red-600 text-sm"></span>
+                </div>
+
+                <div>
+                    <label asp-for="ConfirmPassword" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                    <input asp-for="ConfirmPassword" type="password" autocomplete="new-password" required
+                           class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                           placeholder="Confirm your password">
+                    <span asp-validation-for="ConfirmPassword" class="text-red-600 text-sm"></span>
+                </div>
+            </div>
+
+            <div>
+                <button type="submit"
+                        class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    Create Account
+                </button>
+            </div>
+
+            <div class="text-center">
+                <p class="text-xs text-gray-500">
+                    By creating an account, you agree to our Terms of Service and Privacy Policy.
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        // Client-side password confirmation validation
+        document.addEventListener('DOMContentLoaded', function() {
+            const password = document.getElementById('Password');
+            const confirmPassword = document.getElementById('ConfirmPassword');
+
+            function validatePassword() {
+                if (password.value !== confirmPassword.value) {
+                    confirmPassword.setCustomValidity("Passwords do not match");
+                } else {
+                    confirmPassword.setCustomValidity('');
+                }
+            }
+
+            password.addEventListener('change', validatePassword);
+            confirmPassword.addEventListener('keyup', validatePassword);
+        });
+    </script>
+}

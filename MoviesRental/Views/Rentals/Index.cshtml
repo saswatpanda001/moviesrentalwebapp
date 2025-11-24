@@ -1,0 +1,63 @@
+﻿@model IEnumerable<MoviesRental.Models.Rental>
+
+@{
+    ViewData["Title"] = "Rentals";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="max-w-6xl mx-auto mt-10">
+
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-3xl font-bold text-gray-800">Rentals</h1>
+
+
+    </div>
+
+    <div class="overflow-x-auto bg-white rounded-xl shadow border border-gray-200">
+        <table class="min-w-full text-left border-collapse">
+            <thead class="bg-gray-100 text-gray-700 uppercase text-sm">
+                <tr>
+                    <th class="px-6 py-3">Rented On</th>
+                    <th class="px-6 py-3">Due Date</th>
+                    <th class="px-6 py-3">Returned On</th>
+                    <th class="px-6 py-3">Price</th>
+                    <th class="px-6 py-3">Movie</th>
+                    <th class="px-6 py-3">User</th>
+                    <th class="px-6 py-3 text-center">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody class="text-gray-700">
+                @foreach (var item in Model)
+                {
+                    <tr class="border-t hover:bg-gray-50 transition">
+                        <td class="px-6 py-4">@item.RentedOn</td>
+                        <td class="px-6 py-4">@item.DueDate</td>
+                        <td class="px-6 py-4">@item.ReturnedOn</td>
+                        <td class="px-6 py-4">@item.Price</td>
+                        <td class="px-6 py-4">@item.Movie.MovieId</td>
+                        <td class="px-6 py-4">@item.User.UserId</td>
+
+                        <td class="px-6 py-4 flex justify-center gap-3">
+
+                            <span class="text-gray-400">|</span>
+
+                            <a asp-action="Details" asp-route-id="@item.RentalId"
+                               class="text-green-600 hover:text-green-800 font-medium">
+                                Details
+                            </a>
+
+                            <span class="text-gray-400">|</span>
+
+                            <a asp-action="Delete" asp-route-id="@item.RentalId"
+                               class="text-red-600 hover:text-red-800 font-medium">
+                                Delete
+                            </a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

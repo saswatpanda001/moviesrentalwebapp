@@ -1,0 +1,290 @@
+﻿@model IEnumerable<MoviesRental.Models.Movie>
+@{
+    ViewData["Title"] = "Browse Movies";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+                Browse Movies
+            </h1>
+            <p class="text-gray-600 text-lg">Discover amazing movies to rent and enjoy</p>
+        </div>
+
+        <!-- Search and Filter Section -->
+        <div class="bg-white/80 backdrop-blur-lg rounded-2xl shadow-lg p-6 mb-8 border border-white/20">
+            <form method="get" class="space-y-4 md:space-y-0 md:grid md:grid-cols-12 md:gap-4 md:items-end">
+                <!-- Search Input -->
+                <div class="md:col-span-5">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2 flex items-center">
+                        <i class="fas fa-search text-blue-500 mr-2"></i>
+                        Search Movies
+                    </label>
+                    <div class="relative">
+                        <input type="text" name="searchString"
+                               class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 placeholder-gray-400"
+                               placeholder="Search by title or description..."
+                               value="@Context.Request.Query["searchString"]">
+                        <i class="fas fa-search absolute left-3 top-3.5 text-gray-400"></i>
+                    </div>
+                </div>
+
+                <!-- Genre Filter -->
+                <div class="md:col-span-4">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2 flex items-center">
+                        <i class="fas fa-filter text-purple-500 mr-2"></i>
+                        Filter by Genre
+                    </label>
+                    <div class="relative">
+                        <select name="genreFilter" class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200 appearance-none bg-white">
+                            <option value="">All Genres</option>
+                            @foreach (var genre in ViewBag.Genres)
+                            {
+                                <option value="@genre" selected="@(Context.Request.Query["genreFilter"] == genre)">
+                                    @genre
+                                </option>
+                            }
+                        </select>
+                        <i class="fas fa-chevron-down absolute right-3 top-3.5 text-gray-400 pointer-events-none"></i>
+                        <i class="fas fa-tag absolute left-3 top-3.5 text-gray-400"></i>
+                    </div>
+                </div>
+
+                <!-- Search Button -->
+                <div class="md:col-span-3">
+                    <button type="submit"
+                            class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 px-6 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 flex items-center justify-center space-x-2">
+                        <i class="fas fa-search"></i>
+                        <span>Search</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Results Count -->
+        @if (Model.Any())
+        {
+            <div class="mb-6 flex items-center justify-between">
+                <p class="text-gray-600">
+                    Found <span class="font-semibold text-blue-600">@Model.Count()</span> movies
+                    @if (!string.IsNullOrEmpty(Context.Request.Query["searchString"]))
+                    {
+                        <span>for "<span class="font-semibold">@Context.Request.Query["searchString"]</span>"</span>
+                    }
+                </p>
+              
+            </div>
+        }
+
+        <!-- Movies Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            @foreach (var movie in Model)
+            {
+                <div class="bg-white/80 backdrop-blur-lg rounded-2xl shadow-lg hover:shadow-2xl border border-white/20 transition-all duration-300 transform hover:-translate-y-2 group overflow-hidden">
+                    <!-- Movie Header -->
+                    <div class="p-6 pb-4">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="font-bold text-gray-900 text-lg leading-tight group-hover:text-blue-600 transition-colors line-clamp-2">
+                                <a href="@Url.Action("Details", "MyMovies", new { id = movie.MovieId })"
+                                   class="hover:text-blue-600 transition-colors">
+                                    @movie.Title
+                                </a>
+                            </h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded-full whitespace-nowrap ml-2">
+                                @movie.ReleaseYear
+                            </span>
+                        </div>
+
+                        <div class="flex items-center space-x-2 mb-3">
+                            <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2 py-1 rounded-full">
+                                @movie.Genre
+                            </span>
+                            <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2 py-1 rounded-full flex items-center space-x-1">
+                                <i class="fas fa-box text-xs"></i>
+                                <span>@movie.Stock left</span>
+                            </span>
+                        </div>
+
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                            @(movie.Description?.Length > 120 ? movie.Description.Substring(0, 120) + "..." : movie.Description ?? "No description available")
+                        </p>
+                    </div>
+
+                    <!-- Action Section -->
+                    <div class="px-6 pb-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="text-left">
+                                <p class="text-2xl font-bold text-green-600">@movie.RentalPrice.ToString("C2")</p>
+                                <p class="text-xs text-gray-500">per day</p>
+                            </div>
+
+                            <button class="add-to-cart bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2.5 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                                    data-movie-id="@movie.MovieId"
+                                    @(movie.Stock <= 0 ? "disabled" : "")>
+                                @if (movie.Stock <= 0)
+                                {
+                                    <i class="fas fa-times"></i>
+                                    <span>Out of Stock</span>
+                                }
+                                else
+                                {
+                                    <i class="fas fa-cart-plus"></i>
+                                    <span>Add to Cart</span>
+                                }
+                            </button>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="flex space-x-3">
+                            <a href="@Url.Action("Details", "MyMovies", new { id = movie.MovieId })"
+                               class="flex-1 bg-gray-100 text-gray-700 py-2 px-3 rounded-lg hover:bg-gray-200 transition-colors text-sm font-medium flex items-center justify-center space-x-1">
+                                <i class="fas fa-info-circle text-xs"></i>
+                                <span>Details</span>
+                            </a>
+                           
+                        </div>
+                    </div>
+
+                    <!-- Stock Indicator -->
+                    @if (movie.Stock <= 3 && movie.Stock > 0)
+                    {
+                        <div class="bg-yellow-50 border-t border-yellow-200 px-6 py-2">
+                            <p class="text-yellow-700 text-xs font-medium flex items-center space-x-1">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>Only @movie.Stock left in stock!</span>
+                            </p>
+                        </div>
+                    }
+                    else if (movie.Stock <= 0)
+                    {
+                        <div class="bg-red-50 border-t border-red-200 px-6 py-2">
+                            <p class="text-red-700 text-xs font-medium flex items-center space-x-1">
+                                <i class="fas fa-times-circle"></i>
+                                <span>Currently unavailable</span>
+                            </p>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+
+        <!-- Empty State -->
+        @if (!Model.Any())
+        {
+            <div class="text-center py-16">
+                <div class="max-w-md mx-auto">
+                    <i class="fas fa-film text-gray-300 text-6xl mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-gray-600 mb-2">No movies found</h3>
+                    <p class="text-gray-500 mb-6">Try adjusting your search criteria or browse different genres</p>
+                    <a href="@Url.Action("Browse")"
+                       class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 inline-flex items-center space-x-2">
+                        <i class="fas fa-redo"></i>
+                        <span>Clear Filters</span>
+                    </a>
+                </div>
+            </div>
+        }
+
+        <!-- Load More Button (if needed) -->
+        @if (Model.Any() && Model.Count() >= 12)
+        {
+            <div class="text-center mt-12">
+                <button class="bg-white text-blue-600 border border-blue-600 px-8 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-200 transform hover:-translate-y-0.5 flex items-center space-x-2 mx-auto">
+                    <i class="fas fa-sync-alt"></i>
+                    <span>Load More Movies</span>
+                </button>
+            </div>
+        }
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add to cart functionality
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', function() {
+                    const movieId = this.dataset.movieId;
+                    const button = this;
+
+                    console.log('Add to cart clicked for movie:', movieId);
+
+                    // Disable button during request
+                    button.disabled = true;
+                    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Adding...</span>';
+
+                    // Create form data instead of JSON
+                    const formData = new FormData();
+                    formData.append('movieId', movieId);
+                    formData.append('quantity', '1');
+                    formData.append('rentalDays', '7');
+
+                    fetch('/Cart/AddToCart', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => {
+                        console.log('Response status:', response.status);
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Response data:', data);
+                        if (data.success) {
+                            // Show success feedback
+                            button.innerHTML = '<i class="fas fa-check"></i><span>Added!</span>';
+                            button.classList.remove('from-blue-500', 'to-purple-600');
+                            button.classList.add('from-green-500', 'to-green-600');
+
+                            // Update cart count
+                            updateCartCount();
+
+                            // Revert button after 2 seconds
+                            setTimeout(() => {
+                                if (button.dataset.movieId === movieId) {
+                                    button.innerHTML = '<i class="fas fa-cart-plus"></i><span>Add to Cart</span>';
+                                    button.classList.remove('from-green-500', 'to-green-600');
+                                    button.classList.add('from-blue-500', 'to-purple-600');
+                                    button.disabled = false;
+                                }
+                            }, 2000);
+                        } else {
+                            alert(data.message || 'Error adding to cart');
+                            button.innerHTML = '<i class="fas fa-cart-plus"></i><span>Add to Cart</span>';
+                            button.disabled = false;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Fetch error:', error);
+                        alert('Error adding to cart. Please check console for details.');
+                        button.innerHTML = '<i class="fas fa-cart-plus"></i><span>Add to Cart</span>';
+                        button.disabled = false;
+                    });
+                });
+            });
+
+            function updateCartCount() {
+                // Update cart count in navbar
+                const cartCount = document.querySelector('.cart-count');
+                if (cartCount) {
+                    const currentCount = parseInt(cartCount.textContent) || 0;
+                    cartCount.textContent = currentCount + 1;
+                    cartCount.classList.add('animate-ping');
+                    setTimeout(() => cartCount.classList.remove('animate-ping'), 1000);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

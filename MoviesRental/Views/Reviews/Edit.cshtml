@@ -1,0 +1,78 @@
+﻿@model MoviesRental.Models.Review
+
+@{
+    ViewData["Title"] = "Edit Review";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="max-w-3xl mx-auto mt-10 bg-white shadow-lg rounded-xl p-8 border border-gray-200">
+    <h1 class="text-3xl font-bold text-gray-900 mb-6">Edit Review</h1>
+
+    <form asp-action="Edit" class="space-y-6">
+        <div asp-validation-summary="ModelOnly" class="text-red-600 mb-4 p-4 bg-red-50 rounded-lg"></div>
+
+        <input type="hidden" asp-for="ReviewId" />
+
+        <!-- User -->
+        <div>
+            <label asp-for="UserId" class="block text-sm font-medium text-gray-700 mb-2">User</label>
+            <select asp-for="UserId" asp-items="ViewBag.UserId"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                <option value="">-- Select User --</option>
+            </select>
+            <span asp-validation-for="UserId" class="text-red-600 text-sm mt-1"></span>
+        </div>
+
+        <!-- Movie -->
+        <div>
+            <label asp-for="MovieId" class="block text-sm font-medium text-gray-700 mb-2">Movie</label>
+            <select asp-for="MovieId" asp-items="ViewBag.MovieId"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                <option value="">-- Select Movie --</option>
+            </select>
+            <span asp-validation-for="MovieId" class="text-red-600 text-sm mt-1"></span>
+        </div>
+
+        <!-- Rating -->
+        <div>
+            <label asp-for="Rating" class="block text-sm font-medium text-gray-700 mb-2">Rating (1-5)</label>
+            <input asp-for="Rating" type="number" min="1" max="5"
+                   class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+            <span asp-validation-for="Rating" class="text-red-600 text-sm mt-1"></span>
+        </div>
+
+        <!-- Comment -->
+        <div>
+            <label asp-for="Comment" class="block text-sm font-medium text-gray-700 mb-2">Comment</label>
+            <textarea asp-for="Comment" rows="4"
+                      class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+            <span asp-validation-for="Comment" class="text-red-600 text-sm mt-1"></span>
+        </div>
+
+        <!-- Created At (make it read-only or hidden since it shouldn't be edited) -->
+        <div>
+            <label asp-for="CreatedAt" class="block text-sm font-medium text-gray-700 mb-2">Created Date</label>
+            <input asp-for="CreatedAt" readonly
+                   class="w-full p-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-500" />
+            <span class="text-sm text-gray-500 mt-1">This field cannot be modified</span>
+        </div>
+
+        <!-- Save Button -->
+        <div class="flex space-x-4 pt-4">
+            <button type="submit"
+                    class="flex-1 bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition shadow focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                Save Changes
+            </button>
+            <a asp-action="Index"
+               class="flex-1 bg-gray-300 text-gray-800 py-3 rounded-lg font-medium hover:bg-gray-400 transition text-center">
+                Cancel
+            </a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

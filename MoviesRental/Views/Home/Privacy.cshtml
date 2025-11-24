@@ -1,0 +1,305 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - MoviesRental</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen">
+    <div class="max-w-4xl mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <i class="fas fa-shield-alt text-white text-3xl"></i>
+            </div>
+            <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+                Privacy Policy
+            </h1>
+            <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                Your privacy is important to us. Learn how we protect and manage your personal information.
+            </p>
+        </div>
+
+        <!-- Privacy Content -->
+        <div class="bg-white/80 backdrop-blur-lg rounded-2xl shadow-xl border border-white/20 p-8">
+            <div class="prose prose-lg max-w-none">
+                <!-- Last Updated -->
+                <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-info-circle text-blue-500 text-xl"></i>
+                        <div>
+                            <p class="font-semibold text-blue-800">Last Updated: @DateTime.Now.ToString("MMMM dd, yyyy")</p>
+                            <p class="text-blue-600 text-sm">We regularly review and update our privacy practices.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Information We Collect -->
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fas fa-database text-blue-500 mr-3"></i>
+                        Information We Collect
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-gray-50 rounded-xl p-4">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <div class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-user text-white"></i>
+                                </div>
+                                <h3 class="font-semibold text-gray-900">Personal Information</h3>
+                            </div>
+                            <ul class="text-gray-600 space-y-1 text-sm">
+                                <li class="flex items-center space-x-2">
+                                    <i class="fas fa-check text-green-500 text-xs"></i>
+                                    <span>Name and contact details</span>
+                                </li>
+                                <li class="flex items-center space-x-2">
+                                    <i class="fas fa-check text-green-500 text-xs"></i>
+                                    <span>Email address</span>
+                                </li>
+                                <li class="flex items-center space-x-2">
+                                    <i class="fas fa-check text-green-500 text-xs"></i>
+                                    <span>Payment information</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-gray-50 rounded-xl p-4">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-film text-white"></i>
+                                </div>
+                                <h3 class="font-semibold text-gray-900">Usage Data</h3>
+                            </div>
+                            <ul class="text-gray-600 space-y-1 text-sm">
+                                <li class="flex items-center space-x-2">
+                                    <i class="fas fa-check text-green-500 text-xs"></i>
+                                    <span>Movie preferences</span>
+                                </li>
+                                <li class="flex items-center space-x-2">
+                                    <i class="fas fa-check text-green-500 text-xs"></i>
+                                    <span>Rental history</span>
+                                </li>
+                                <li class="flex items-center space-x-2">
+                                    <i class="fas fa-check text-green-500 text-xs"></i>
+                                    <span>Review activity</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- How We Use Information -->
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fas fa-cogs text-purple-500 mr-3"></i>
+                        How We Use Your Information
+                    </h2>
+                    <div class="bg-purple-50 rounded-xl p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-bolt text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-1">Service Delivery</h4>
+                                    <p class="text-gray-600 text-sm">Process rentals and manage your account</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-3">
+                                <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-envelope text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-1">Communication</h4>
+                                    <p class="text-gray-600 text-sm">Send updates and rental notifications</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-3">
+                                <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-chart-line text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-1">Improvements</h4>
+                                    <p class="text-gray-600 text-sm">Enhance user experience and services</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-3">
+                                <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-shield-alt text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-1">Security</h4>
+                                    <p class="text-gray-600 text-sm">Protect against fraud and abuse</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Protection -->
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fas fa-lock text-green-500 mr-3"></i>
+                        Data Protection
+                    </h2>
+                    <div class="bg-green-50 border border-green-200 rounded-xl p-6">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <i class="fas fa-check-circle text-green-500 text-2xl"></i>
+                            <div>
+                                <h3 class="font-semibold text-green-800 text-lg">We're committed to protecting your data</h3>
+                                <p class="text-green-600">Your information is secured with industry-standard measures</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                            <div class="bg-white rounded-lg p-4 border border-green-200">
+                                <i class="fas fa-encryption text-green-500 text-2xl mb-2"></i>
+                                <h4 class="font-semibold text-gray-900 mb-1">Encryption</h4>
+                                <p class="text-gray-600 text-sm">SSL/TLS protected data transmission</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-4 border border-green-200">
+                                <i class="fas fa-user-shield text-green-500 text-2xl mb-2"></i>
+                                <h4 class="font-semibold text-gray-900 mb-1">Access Control</h4>
+                                <p class="text-gray-600 text-sm">Strict role-based access permissions</p>
+                            </div>
+                            <div class="bg-white rounded-lg p-4 border border-green-200">
+                                <i class="fas fa-history text-green-500 text-2xl mb-2"></i>
+                                <h4 class="font-semibold text-gray-900 mb-1">Regular Audits</h4>
+                                <p class="text-gray-600 text-sm">Continuous security monitoring</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Your Rights -->
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                        <i class="fas fa-user-check text-orange-500 mr-3"></i>
+                        Your Rights
+                    </h2>
+                    <div class="bg-orange-50 rounded-xl p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-eye text-orange-500 text-xl"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Right to Access</h4>
+                                    <p class="text-gray-600 text-sm">View your personal data</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-edit text-orange-500 text-xl"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Right to Correct</h4>
+                                    <p class="text-gray-600 text-sm">Update inaccurate information</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-trash text-orange-500 text-xl"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Right to Delete</h4>
+                                    <p class="text-gray-600 text-sm">Request data deletion</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-download text-orange-500 text-xl"></i>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Data Portability</h4>
+                                    <p class="text-gray-600 text-sm">Export your data</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="bg-gray-50 rounded-xl p-6 text-center">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Questions About Our Privacy Policy?</h3>
+                    <p class="text-gray-600 mb-4">We're here to help you understand how we protect your information.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="mailto:privacy@moviesrental.com"
+                           class="bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
+                            <i class="fas fa-envelope"></i>
+                            <span>Email Privacy Team</span>
+                        </a>
+                        <a href="@Url.Action("Index", "Home")"
+                           class="bg-gray-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-gray-700 transition-colors flex items-center justify-center space-x-2">
+                            <i class="fas fa-home"></i>
+                            <span>Back to Home</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Summary -->
+        <div class="mt-8 bg-white/80 backdrop-blur-lg rounded-2xl shadow-xl border border-white/20 p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                <i class="fas fa-file-alt text-blue-500 mr-2"></i>
+                Policy Summary
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
+                <div class="p-4">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-handshake text-blue-600"></i>
+                    </div>
+                    <p class="text-sm text-gray-600">Transparent data practices</p>
+                </div>
+                <div class="p-4">
+                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-shield-alt text-green-600"></i>
+                    </div>
+                    <p class="text-sm text-gray-600">Enterprise-grade security</p>
+                </div>
+                <div class="p-4">
+                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-user-cog text-purple-600"></i>
+                    </div>
+                    <p class="text-sm text-gray-600">User control & rights</p>
+                </div>
+                <div class="p-4">
+                    <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-sync-alt text-orange-600"></i>
+                    </div>
+                    <p class="text-sm text-gray-600">Regular policy updates</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections for fade-in effect
+            document.querySelectorAll('h2, .bg-gray-50, .bg-purple-50, .bg-green-50, .bg-orange-50').forEach((section) => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

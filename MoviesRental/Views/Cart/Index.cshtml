@@ -1,0 +1,378 @@
+﻿@model MoviesRental.Models.Cart
+@{
+    ViewData["Title"] = "Shopping Cart";
+    decimal totalAmount = 0;
+    decimal taxRate = 0.10m; // 10% tax
+
+    if (Model.CartItems.Any())
+    {
+        totalAmount = ViewBag.TotalAmount;
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+                Shopping Cart
+            </h1>
+            <p class="text-gray-600 text-lg">Review your selected movies and proceed to checkout</p>
+        </div>
+
+        @if (!Model.CartItems.Any())
+        {
+            <!-- Empty Cart -->
+            <div class="bg-white/80 backdrop-blur-lg rounded-2xl shadow-xl border border-white/20 p-12 text-center">
+                <i class="fas fa-shopping-cart text-gray-300 text-6xl mb-4"></i>
+                <h3 class="text-2xl font-semibold text-gray-600 mb-2">Your Cart is Empty</h3>
+                <p class="text-gray-500 mb-6">Start browsing movies to add them to your cart!</p>
+                <a href="@Url.Action("Index", "MyMovies")"
+                   class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 inline-flex items-center space-x-2">
+                    <i class="fas fa-compass"></i>
+                    <span>Browse Movies</span>
+                </a>
+            </div>
+        }
+        else
+        {
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Cart Items -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white/80 backdrop-blur-lg rounded-2xl shadow-xl border border-white/20 p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-2xl font-bold text-gray-900 flex items-center">
+                                <i class="fas fa-shopping-cart text-blue-500 mr-3"></i>
+                                Cart Items
+                            </h2>
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">
+                                @Model.CartItems.Count item@(Model.CartItems.Count > 1 ? "s" : "")
+                            </span>
+                        </div>
+
+                        <div class="space-y-4">
+                            @foreach (var item in Model.CartItems)
+                            {
+                                var itemTotal = item.Quantity * item.RentalDays * item.Movie.RentalPrice;
+
+                                <div class="cart-item bg-gray-50 rounded-xl p-4 border border-gray-200" data-cart-item-id="@item.CartItemId">
+                                    <div class="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0">
+                                        <!-- Movie Info -->
+                                        <div class="flex-1">
+                                            <h3 class="font-bold text-gray-900 text-lg">@item.Movie.Title</h3>
+                                            <p class="text-gray-600 text-sm flex items-center mt-1">
+                                                <i class="fas fa-tag text-purple-500 mr-2"></i>
+                                                @item.Movie.Genre • @item.Movie.ReleaseYear
+                                            </p>
+                                            <p class="text-green-600 font-semibold mt-2">
+                                                @item.Movie.RentalPrice.ToString("C2")/day
+                                            </p>
+                                        </div>
+
+                                        <!-- Quantity Controls -->
+                                        <div class="flex items-center space-x-4">
+                                            <div>
+                                                <label class="block text-sm font-semibold text-gray-700 mb-2">Quantity</label>
+                                                <div class="flex items-center space-x-2">
+                                                    <button class="quantity-decrease w-8 h-8 bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors">
+                                                        <i class="fas fa-minus text-gray-600 text-xs"></i>
+                                                    </button>
+                                                    <input type="number"
+                                                           class="quantity-input w-16 text-center border border-gray-300 rounded-lg py-1 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                                           value="@item.Quantity"
+                                                           min="1"
+                                                           max="@item.Movie.Stock"
+                                                           data-price="@item.Movie.RentalPrice">
+                                                    <button class="quantity-increase w-8 h-8 bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors">
+                                                        <i class="fas fa-plus text-gray-600 text-xs"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <!-- Rental Days -->
+                                            <div>
+                                                <label class="block text-sm font-semibold text-gray-700 mb-2">Days</label>
+                                                <div class="flex items-center space-x-2">
+                                                    <button class="days-decrease w-8 h-8 bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors">
+                                                        <i class="fas fa-minus text-gray-600 text-xs"></i>
+                                                    </button>
+                                                    <input type="number"
+                                                           class="days-input w-16 text-center border border-gray-300 rounded-lg py-1 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                                           value="@item.RentalDays"
+                                                           min="1"
+                                                           max="30"
+                                                           data-price="@item.Movie.RentalPrice">
+                                                    <button class="days-increase w-8 h-8 bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 transition-colors">
+                                                        <i class="fas fa-plus text-gray-600 text-xs"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <!-- Item Total -->
+                                            <div class="text-right">
+                                                <p class="text-sm text-gray-600">Item Total</p>
+                                                <p class="item-total font-bold text-green-600 text-lg" data-base-price="@itemTotal">
+                                                    @itemTotal.ToString("C2")
+                                                </p>
+                                            </div>
+
+                                            <!-- Remove Button -->
+                                            <button class="remove-item text-red-500 hover:text-red-700 transition-colors p-2">
+                                                <i class="fas fa-trash text-lg"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Stock Info -->
+                                    <div class="mt-3 flex items-center justify-between text-sm">
+                                        <span class="text-gray-500">
+                                            @item.Movie.Stock in stock
+                                        </span>
+                                        <span class="text-blue-600 font-medium">
+                                            @item.Quantity × @item.RentalDays days × @item.Movie.RentalPrice.ToString("C2")/day
+                                        </span>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white/80 backdrop-blur-lg rounded-2xl shadow-xl border border-white/20 p-6 sticky top-6">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                            <i class="fas fa-receipt text-green-500 mr-3"></i>
+                            Order Summary
+                        </h2>
+
+                        <!-- Summary Details -->
+                        <div class="space-y-3 mb-6">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Subtotal</span>
+                                <span class="font-semibold text-gray-900" id="subtotal">@totalAmount.ToString("C2")</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-600">Tax (10%)</span>
+                                <span class="font-semibold text-gray-900" id="tax">@((totalAmount * taxRate).ToString("C2"))</span>
+                            </div>
+                            <div class="border-t border-gray-200 pt-3">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-lg font-bold text-gray-900">Total</span>
+                                    <span class="text-2xl font-bold text-green-600" id="total-amount">@((totalAmount * (1 + taxRate)).ToString("C2"))</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="space-y-3">
+                            <a href="@Url.Action("Checkout", "Cart")"
+                               class="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-3 px-6 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center space-x-2">
+                                <i class="fas fa-lock"></i>
+                                <span>Proceed to Payment</span>
+                            </a>
+
+                            <a href="@Url.Action("Index", "MyMovies")"
+                               class="w-full bg-white border border-gray-300 text-gray-700 py-3 px-6 rounded-xl font-semibold hover:bg-gray-50 transition-all duration-200 flex items-center justify-center space-x-2">
+                                <i class="fas fa-arrow-left"></i>
+                                <span>Continue Shopping</span>
+                            </a>
+                        </div>
+
+                        <!-- Security Badge -->
+                        <div class="mt-6 p-3 bg-green-50 border border-green-200 rounded-xl text-center">
+                            <div class="flex items-center justify-center space-x-2 text-green-700">
+                                <i class="fas fa-shield-alt"></i>
+                                <span class="text-sm font-semibold">Secure Checkout</span>
+                            </div>
+                            <p class="text-green-600 text-xs mt-1">Your payment information is protected</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize cart calculations
+            updateCartTotals();
+
+            // Quantity controls
+            document.querySelectorAll('.quantity-increase').forEach(button => {
+                button.addEventListener('click', function() {
+                    const input = this.previousElementSibling;
+                    const max = parseInt(input.getAttribute('max'));
+                    if (parseInt(input.value) < max) {
+                        input.value = parseInt(input.value) + 1;
+                        updateItemTotal(input);
+                        updateCartItem(input.closest('.cart-item'));
+                    }
+                });
+            });
+
+            document.querySelectorAll('.quantity-decrease').forEach(button => {
+                button.addEventListener('click', function() {
+                    const input = this.nextElementSibling;
+                    const min = parseInt(input.getAttribute('min'));
+                    if (parseInt(input.value) > min) {
+                        input.value = parseInt(input.value) - 1;
+                        updateItemTotal(input);
+                        updateCartItem(input.closest('.cart-item'));
+                    }
+                });
+            });
+
+            // Days controls
+            document.querySelectorAll('.days-increase').forEach(button => {
+                button.addEventListener('click', function() {
+                    const input = this.previousElementSibling;
+                    const max = parseInt(input.getAttribute('max'));
+                    if (parseInt(input.value) < max) {
+                        input.value = parseInt(input.value) + 1;
+                        updateItemTotal(input);
+                        updateCartItem(input.closest('.cart-item'));
+                    }
+                });
+            });
+
+            document.querySelectorAll('.days-decrease').forEach(button => {
+                button.addEventListener('click', function() {
+                    const input = this.nextElementSibling;
+                    const min = parseInt(input.getAttribute('min'));
+                    if (parseInt(input.value) > min) {
+                        input.value = parseInt(input.value) - 1;
+                        updateItemTotal(input);
+                        updateCartItem(input.closest('.cart-item'));
+                    }
+                });
+            });
+
+            // Input change events
+            document.querySelectorAll('.quantity-input, .days-input').forEach(input => {
+                input.addEventListener('change', function() {
+                    const min = parseInt(this.getAttribute('min'));
+                    const max = parseInt(this.getAttribute('max'));
+                    let value = parseInt(this.value);
+
+                    if (value < min) value = min;
+                    if (value > max) value = max;
+
+                    this.value = value;
+                    updateItemTotal(this);
+                    updateCartItem(this.closest('.cart-item'));
+                });
+            });
+
+            // Remove item
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    const cartItem = this.closest('.cart-item');
+                    const cartItemId = cartItem.dataset.cartItemId;
+
+                    if (confirm('Are you sure you want to remove this item from your cart?')) {
+                        removeCartItem(cartItemId, cartItem);
+                    }
+                });
+            });
+
+            function updateItemTotal(input) {
+                const cartItem = input.closest('.cart-item');
+                const quantityInput = cartItem.querySelector('.quantity-input');
+                const daysInput = cartItem.querySelector('.days-input');
+                const price = parseFloat(quantityInput.dataset.price);
+
+                const quantity = parseInt(quantityInput.value);
+                const days = parseInt(daysInput.value);
+                const itemTotal = quantity * days * price;
+
+                const itemTotalElement = cartItem.querySelector('.item-total');
+                itemTotalElement.textContent = '$' + itemTotal.toFixed(2);
+                itemTotalElement.dataset.basePrice = itemTotal;
+
+                updateCartTotals();
+            }
+
+            function updateCartTotals() {
+                let subtotal = 0;
+                const taxRate = 0.10;
+
+                document.querySelectorAll('.item-total').forEach(element => {
+                    subtotal += parseFloat(element.dataset.basePrice);
+                });
+
+                const tax = subtotal * taxRate;
+                const total = subtotal + tax;
+
+                document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
+                document.getElementById('tax').textContent = '$' + tax.toFixed(2);
+                document.getElementById('total-amount').textContent = '$' + total.toFixed(2);
+            }
+
+            function updateCartItem(cartItem) {
+                const cartItemId = cartItem.dataset.cartItemId;
+                const quantity = parseInt(cartItem.querySelector('.quantity-input').value);
+                const rentalDays = parseInt(cartItem.querySelector('.days-input').value);
+
+                const formData = new FormData();
+                formData.append('cartItemId', cartItemId);
+                formData.append('quantity', quantity);
+                formData.append('rentalDays', rentalDays);
+
+                fetch('/Cart/UpdateCartItem', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log('Cart item updated successfully');
+                    } else {
+                        console.error('Failed to update cart item');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error updating cart item:', error);
+                });
+            }
+
+            function removeCartItem(cartItemId, cartItemElement) {
+                const formData = new FormData();
+                formData.append('cartItemId', cartItemId);
+
+                fetch('/Cart/RemoveFromCart', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        cartItemElement.remove();
+                        updateCartTotals();
+
+                        // Check if cart is empty
+                        if (document.querySelectorAll('.cart-item').length === 0) {
+                            location.reload();
+                        }
+                    } else {
+                        alert('Failed to remove item from cart');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error removing cart item:', error);
+                    alert('Error removing item from cart');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

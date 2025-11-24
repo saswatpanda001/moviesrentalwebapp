@@ -1,0 +1,145 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="min-h-screen bg-gray-100">
+    <!-- Enhanced Header with Admin Badge -->
+    <div class="bg-gradient-to-r from-red-600 to-red-800 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-6">
+                <div class="flex items-center">
+                    <div class="bg-white p-2 rounded-lg mr-4">
+                        <i class="fas fa-shield-alt text-red-600 text-2xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-bold text-white">Admin Dashboard</h1>
+                        <p class="text-red-200">Administrative Control Panel</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="bg-red-800 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                        <i class="fas fa-shield-alt mr-1"></i>ADMIN
+                    </span>
+                    <span class="text-white">Welcome, @Context.Session.GetString("UserName")!</span>
+                    <a href="@Url.Action("Logout", "Account")"
+                       class="bg-white text-red-600 px-4 py-2 rounded-lg hover:bg-gray-100 transition font-semibold">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Stats -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 bg-blue-100 rounded-lg">
+                        <i class="fas fa-film text-blue-600 text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Total Movies</p>
+                        <p class="text-2xl font-semibold text-gray-900">@ViewBag.TotalMovies</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 bg-green-100 rounded-lg">
+                        <i class="fas fa-users text-green-600 text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Total Users</p>
+                        <p class="text-2xl font-semibold text-gray-900">@ViewBag.TotalUsers</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 bg-purple-100 rounded-lg">
+                        <i class="fas fa-shopping-cart text-purple-600 text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Active Rentals</p>
+                        <p class="text-2xl font-semibold text-gray-900">@ViewBag.ActiveRentals</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex items-center">
+                    <div class="p-3 bg-yellow-100 rounded-lg">
+                        <i class="fas fa-star text-yellow-600 text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <p class="text-sm font-medium text-gray-600">Total Reviews</p>
+                        <p class="text-2xl font-semibold text-gray-900">@ViewBag.TotalReviews</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Management Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Movie Management -->
+            <div class="bg-white overflow-hidden shadow rounded-lg border-l-4 border-red-500">
+                <div class="px-4 py-5 sm:p-6">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+                        <i class="fas fa-film text-red-500 mr-2"></i>Movie Management
+                    </h3>
+                    <div class="mt-4 space-y-3">
+                        <a href="@Url.Action("Index", "Movies")"
+                           class="w-full bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition block text-center">
+                            Manage Movies
+                        </a>
+                        <a href="@Url.Action("Create", "Movies")"
+                           class="w-full bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition block text-center">
+                            Add New Movie
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Management -->
+            <div class="bg-white overflow-hidden shadow rounded-lg border-l-4 border-blue-500">
+                <div class="px-4 py-5 sm:p-6">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+                        <i class="fas fa-users text-blue-500 mr-2"></i>User Management
+                    </h3>
+                    <div class="mt-4 space-y-3">
+                        <a href="@Url.Action("Index", "Users")"
+                           class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition block text-center">
+                            Manage Users
+                        </a>
+                        <a href="@Url.Action("Create", "Users")"
+                           class="w-full bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition block text-center">
+                            Create User
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rental Management -->
+            <div class="bg-white overflow-hidden shadow rounded-lg border-l-4 border-green-500">
+                <div class="px-4 py-5 sm:p-6">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+                        <i class="fas fa-shopping-cart text-green-500 mr-2"></i>Rental Management
+                    </h3>
+                    <div class="mt-4 space-y-3">
+                        <a href="@Url.Action("Index", "Rentals")"
+                           class="w-full bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition block text-center">
+                            Manage Rentals
+                        </a>
+                        <a href="@Url.Action("Index", "Payments")"
+                           class="w-full bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition block text-center">
+                            View Payments
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

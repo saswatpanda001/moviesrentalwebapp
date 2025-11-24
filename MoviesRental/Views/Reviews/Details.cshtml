@@ -1,0 +1,65 @@
+﻿@model MoviesRental.Models.Review
+
+@{
+    ViewData["Title"] = "Review Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="max-w-3xl mx-auto mt-10 bg-white shadow-lg rounded-xl p-8 border border-gray-200">
+
+    <h1 class="text-3xl font-bold text-gray-900 mb-6">Review Details</h1>
+
+    <div class="border border-gray-200 rounded-lg p-6 bg-gray-50">
+        <dl class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+            <div>
+                <dt class="text-sm font-semibold text-gray-600">Rating</dt>
+                <dd class="text-lg font-medium text-gray-900">
+                    @Html.DisplayFor(model => model.Rating)
+                </dd>
+            </div>
+
+            <div>
+                <dt class="text-sm font-semibold text-gray-600">Comment</dt>
+                <dd class="text-lg text-gray-900">
+                    @Html.DisplayFor(model => model.Comment)
+                </dd>
+            </div>
+
+            <div>
+                <dt class="text-sm font-semibold text-gray-600">Created At</dt>
+                <dd class="text-lg text-gray-900">
+                    @Html.DisplayFor(model => model.CreatedAt)
+                </dd>
+            </div>
+
+            <div>
+                <dt class="text-sm font-semibold text-gray-600">Movie ID</dt>
+                <dd class="text-lg text-gray-900">
+                    @Html.DisplayFor(model => model.Movie.MovieId)
+                </dd>
+            </div>
+
+            <div>
+                <dt class="text-sm font-semibold text-gray-600">User ID</dt>
+                <dd class="text-lg text-gray-900">
+                    @Html.DisplayFor(model => model.User.UserId)
+                </dd>
+            </div>
+
+        </dl>
+    </div>
+
+    <div class="mt-8 flex items-center gap-4">
+        <a asp-action="Edit" asp-route-id="@Model?.ReviewId"
+           class="px-5 py-2 bg-blue-600 text-white font-medium rounded-lg shadow hover:bg-blue-700 transition">
+            Edit
+        </a>
+
+        <a asp-action="Index"
+           class="px-5 py-2 bg-gray-200 text-gray-800 font-medium rounded-lg hover:bg-gray-300 transition">
+            Back to List
+        </a>
+    </div>
+
+</div>

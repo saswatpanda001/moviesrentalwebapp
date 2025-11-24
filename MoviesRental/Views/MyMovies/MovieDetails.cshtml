@@ -1,0 +1,181 @@
+﻿@model MoviesRental.Models.MovieApi
+
+@{
+    ViewData["Title"] = Model?.Title ?? "Movie Details";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        @if (Model != null)
+        {
+            <!-- Back Button -->
+            <a href="@Url.Action("SearchApi")" class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-6 transition-colors">
+                <i class="fas fa-arrow-left mr-2"></i>
+                <span>Back to Search</span>
+            </a>
+
+            <!-- Main Movie Card -->
+            <div class="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <div class="flex flex-col lg:flex-row">
+                    <!-- Poster Section -->
+                    <div class="lg:w-2/5 relative">
+                        <img src="@Model.Poster" alt="@Model.Title"
+                             class="w-full h-96 lg:h-full object-cover"
+                             onerror="this.src='https://via.placeholder.com/400x600/d1d5db/6b7280?text=No+Poster'">
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                @Model.Type
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Details Section -->
+                    <div class="lg:w-3/5 p-8">
+                        <!-- Title and Basic Info -->
+                        <div class="mb-6">
+                            <h1 class="text-4xl font-bold text-gray-900 mb-2">@Model.Title</h1>
+                            <div class="flex flex-wrap gap-2 items-center mb-3">
+                                <span class="bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-sm font-semibold">
+                                    @Model.Year
+                                </span>
+                                <span class="bg-blue-400 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                    @Model.Rated
+                                </span>
+                                <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                    @Model.Runtime
+                                </span>
+                            </div>
+                            <p class="text-gray-600 flex items-center">
+                                <i class="fas fa-film mr-2"></i>
+                                @Model.Genre
+                            </p>
+                        </div>
+
+                        <!-- Ratings Section -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                            <div class="bg-white border-2 border-yellow-400 rounded-xl p-4 text-center">
+                                <div class="text-yellow-400 mb-2">
+                                    <i class="fas fa-star text-2xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-900">
+                                    @Model.imdbRating<small class="text-gray-500 text-lg">/10</small>
+                                </h3>
+                                <p class="text-gray-600 text-sm">IMDb Rating</p>
+                                <p class="text-gray-500 text-xs mt-1">@Model.imdbVotes votes</p>
+                            </div>
+
+                            <div class="bg-white border-2 border-blue-400 rounded-xl p-4 text-center">
+                                <div class="text-blue-400 mb-2">
+                                    <i class="fas fa-chart-line text-2xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-900">@Model.Metascore</h3>
+                                <p class="text-gray-600 text-sm">Metascore</p>
+                            </div>
+
+                            <div class="bg-white border-2 border-green-500 rounded-xl p-4 text-center">
+                                <div class="text-green-500 mb-2">
+                                    <i class="fas fa-calendar-alt text-2xl"></i>
+                                </div>
+                                <p class="text-gray-900 font-semibold">Released</p>
+                                <p class="text-green-600 font-bold text-sm">@Model.Released</p>
+                            </div>
+                        </div>
+
+                        <!-- Additional Ratings -->
+                        @if (Model.Ratings != null && Model.Ratings.Any())
+                        {
+                            <div class="mb-6">
+                                <h3 class="text-xl font-bold text-gray-900 mb-3 flex items-center">
+                                    <i class="fas fa-award text-yellow-500 mr-2"></i>
+                                    Ratings & Reviews
+                                </h3>
+                                <div class="flex flex-wrap gap-2">
+                                    @foreach (var rating in Model.Ratings)
+                                    {
+                                        <span class="bg-gray-100 text-gray-800 border border-gray-300 rounded-lg px-3 py-2 text-sm">
+                                            <strong>@rating.Source:</strong> @rating.Value
+                                        </span>
+                                    }
+                                </div>
+                            </div>
+                        }
+
+                        <!-- Movie Details -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <h4 class="text-blue-600 font-semibold mb-2 flex items-center">
+                                    <i class="fas fa-user-tie mr-2"></i>
+                                    Director
+                                </h4>
+                                <p class="text-gray-800">@Model.Director</p>
+                            </div>
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <h4 class="text-blue-600 font-semibold mb-2 flex items-center">
+                                    <i class="fas fa-users mr-2"></i>
+                                    Cast
+                                </h4>
+                                <p class="text-gray-800">@Model.Actors</p>
+                            </div>
+                        </div>
+
+                        <!-- Plot Section -->
+                        <div class="bg-gray-50 rounded-lg p-6">
+                            <h3 class="text-blue-600 text-xl font-semibold mb-3 flex items-center">
+                                <i class="fas fa-book-open mr-2"></i>
+                                Storyline
+                            </h3>
+                            <p class="text-gray-800 text-lg leading-relaxed">@Model.Plot</p>
+                        </div>
+
+                        <!-- Additional Info -->
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            @if (!string.IsNullOrEmpty(Model.Language))
+                            {
+                                <span class="bg-gray-800 text-white px-3 py-1 rounded-full text-sm flex items-center">
+                                    <i class="fas fa-language mr-1"></i>@Model.Language
+                                </span>
+                            }
+                            @if (!string.IsNullOrEmpty(Model.Country))
+                            {
+                                <span class="bg-gray-800 text-white px-3 py-1 rounded-full text-sm flex items-center">
+                                    <i class="fas fa-globe mr-1"></i>@Model.Country
+                                </span>
+                            }
+                            @if (!string.IsNullOrEmpty(Model.Awards) && Model.Awards != "N/A")
+                            {
+                                <span class="bg-green-600 text-white px-3 py-1 rounded-full text-sm flex items-center">
+                                    <i class="fas fa-trophy mr-1"></i>@Model.Awards
+                                </span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <!-- Error State -->
+            <div class="flex justify-center items-center min-h-96">
+                <div class="text-center">
+                    <i class="fas fa-exclamation-triangle text-red-500 text-6xl mb-4"></i>
+                    <h2 class="text-2xl font-bold text-red-600 mb-2">Movie Not Found</h2>
+                    <p class="text-gray-600 mb-6">We couldn't find the movie details you're looking for.</p>
+                    <a href="@Url.Action("SearchApi")" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors inline-flex items-center">
+                        <i class="fas fa-search mr-2"></i>
+                        Back to Search
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</body>
+</html>

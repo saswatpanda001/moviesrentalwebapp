@@ -1,0 +1,250 @@
+﻿@model IEnumerable<MoviesRental.Models.Rental>
+@{
+    ViewData["Title"] = "My Rentals";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+                My Rentals
+            </h1>
+            <p class="text-gray-600 text-lg">Manage your movie rentals and track due dates</p>
+        </div>
+
+        <!-- Success Message -->
+        @if (ViewBag.SuccessMessage != null)
+        {
+            <div class="bg-green-50 border border-green-200 rounded-2xl p-4 mb-6 flex items-center space-x-3 animate-pulse">
+                <i class="fas fa-check-circle text-green-500 text-lg"></i>
+                <div class="text-green-700 font-medium">@ViewBag.SuccessMessage</div>
+                <button type="button" class="ml-auto text-green-500 hover:text-green-700" onclick="this.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        }
+
+        @if (!Model.Any())
+        {
+            <!-- Empty State -->
+            <div class="bg-white/80 backdrop-blur-lg rounded-2xl shadow-xl border border-white/20 p-12 text-center">
+                <i class="fas fa-film text-gray-300 text-6xl mb-4"></i>
+                <h3 class="text-2xl font-semibold text-gray-600 mb-2">No Rentals Yet</h3>
+                <p class="text-gray-500 mb-6">You haven't rented any movies. Start exploring our collection!</p>
+                <a href="@Url.Action("Index", "MyMovies")"
+                   class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 inline-flex items-center space-x-2">
+                    <i class="fas fa-compass"></i>
+                    <span>Browse Movies</span>
+                </a>
+            </div>
+        }
+        else
+        {
+            <!-- Stats Overview -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white/80 backdrop-blur-lg rounded-2xl shadow-lg p-6 text-center border border-white/20">
+                    <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-play-circle text-white text-xl"></i>
+                    </div>
+                    <p class="text-2xl font-bold text-gray-900">@Model.Count(r => r.ReturnedOn == null)</p>
+                    <p class="text-gray-600 text-sm">Active Rentals</p>
+                </div>
+
+                <div class="bg-white/80 backdrop-blur-lg rounded-2xl shadow-lg p-6 text-center border border-white/20">
+                    <div class="w-12 h-12 bg-yellow-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-clock text-white text-xl"></i>
+                    </div>
+                    <p class="text-2xl font-bold text-gray-900">@Model.Count(r => r.ReturnedOn == null && r.DueDate < DateTime.Now.AddDays(3))</p>
+                    <p class="text-gray-600 text-sm">Due Soon</p>
+                </div>
+
+                <div class="bg-white/80 backdrop-blur-lg rounded-2xl shadow-lg p-6 text-center border border-white/20">
+                    <div class="w-12 h-12 bg-red-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-exclamation-triangle text-white text-xl"></i>
+                    </div>
+                    <p class="text-2xl font-bold text-gray-900">@Model.Count(r => r.ReturnedOn == null && r.DueDate < DateTime.Now)</p>
+                    <p class="text-gray-600 text-sm">Overdue</p>
+                </div>
+
+                <div class="bg-white/80 backdrop-blur-lg rounded-2xl shadow-lg p-6 text-center border border-white/20">
+                    <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-check-circle text-white text-xl"></i>
+                    </div>
+                    <p class="text-2xl font-bold text-gray-900">@Model.Count(r => r.ReturnedOn != null)</p>
+                    <p class="text-gray-600 text-sm">Returned</p>
+                </div>
+            </div>
+
+            <!-- Rentals Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                @foreach (var rental in Model)
+                {
+                    var isOverdue = DateTime.Now > rental.DueDate && rental.ReturnedOn == null;
+                    var isDueSoon = DateTime.Now.AddDays(3) > rental.DueDate && rental.ReturnedOn == null && !isOverdue;
+                    var status = rental.ReturnedOn != null ? "Returned" : isOverdue ? "Overdue" : "Active";
+
+                    <div class="bg-white/80 backdrop-blur-lg rounded-2xl shadow-lg hover:shadow-xl border border-white/20 transition-all duration-300 transform hover:-translate-y-1 overflow-hidden">
+                        <!-- Header with Status -->
+                        <div class="bg-gradient-to-r @GetStatusGradient(status) p-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-white font-semibold text-sm uppercase tracking-wide">@status</span>
+                                <span class="bg-white/20 text-white px-2 py-1 rounded-full text-xs font-semibold">
+                                    #@rental.RentalId
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Movie Info -->
+                        <div class="p-6">
+                            <h3 class="font-bold text-gray-900 text-lg mb-2 line-clamp-2">@rental.Movie.Title</h3>
+                            <p class="text-gray-600 text-sm mb-4 flex items-center">
+                                <i class="fas fa-tag text-purple-500 mr-2"></i>
+                                @rental.Movie.Genre • @rental.Movie.ReleaseYear
+                            </p>
+
+                            <!-- Rental Dates -->
+                            <div class="space-y-3 mb-4">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600 text-sm flex items-center">
+                                        <i class="fas fa-calendar-plus text-green-500 mr-2"></i>
+                                        Rented
+                                    </span>
+                                    <span class="font-semibold text-gray-900">@rental.RentedOn.ToString("MMM dd, yyyy")</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600 text-sm flex items-center">
+                                        <i class="fas fa-calendar-check @(isOverdue ? "text-red-500" : "text-blue-500") mr-2"></i>
+                                        Due Date
+                                    </span>
+                                    <span class="font-semibold @(isOverdue ? "text-red-600" : "text-gray-900")">
+                                        @rental.DueDate.ToString("MMM dd, yyyy")
+                                    </span>
+                                </div>
+                                @if (rental.ReturnedOn != null)
+                                {
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-gray-600 text-sm flex items-center">
+                                            <i class="fas fa-calendar-minus text-green-500 mr-2"></i>
+                                            Returned
+                                        </span>
+                                        <span class="font-semibold text-green-600">@rental.ReturnedOn.Value.ToString("MMM dd, yyyy")</span>
+                                    </div>
+                                }
+                            </div>
+
+                            <!-- Payment Status -->
+                            <div class="bg-gray-50 rounded-xl p-3 mb-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-gray-700 font-semibold">Payment</span>
+                                    @if (rental.Payment != null)
+                                    {
+                                        <span class="bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded-full flex items-center">
+                                            <i class="fas fa-check-circle mr-1"></i>
+                                            Paid
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 py-1 rounded-full flex items-center">
+                                            <i class="fas fa-clock mr-1"></i>
+                                            Pending
+                                        </span>
+                                    }
+                                </div>
+                                <div class="flex justify-between items-center text-sm">
+                                    <span class="text-gray-600">Amount</span>
+                                    <span class="font-bold text-green-600">@rental.Price.ToString("C2")</span>
+                                </div>
+                                @if (rental.Payment != null)
+                                {
+                                    <div class="flex justify-between items-center text-sm mt-1">
+                                        <span class="text-gray-600">Method</span>
+                                        <span class="font-semibold text-gray-700">@rental.Payment.PaymentMethod</span>
+                                    </div>
+                                }
+                            </div>
+
+                            <!-- Actions -->
+                            <div class="flex space-x-2">
+                                <a href="@Url.Action("Details", new { id = rental.RentalId })"
+                                   class="flex-1 bg-blue-600 text-white py-2 px-4 rounded-xl font-semibold hover:bg-blue-700 transition-colors text-sm flex items-center justify-center space-x-2">
+                                    <i class="fas fa-eye"></i>
+                                    <span>Details</span>
+                                </a>
+
+                                @if (rental.ReturnedOn == null)
+                                {
+                                    <form method="post" action="@Url.Action("ReturnRental")"
+                                          onsubmit="return confirm('Are you sure you want to return this movie?')" class="flex-1">
+                                        <input type="hidden" name="rentalId" value="@rental.RentalId" />
+                                        <button type="submit"
+                                                class="w-full bg-green-600 text-white py-2 px-4 rounded-xl font-semibold hover:bg-green-700 transition-colors text-sm flex items-center justify-center space-x-2">
+                                            <i class="fas fa-undo"></i>
+                                            <span>Return</span>
+                                        </button>
+                                    </form>
+                                }
+                            </div>
+
+                            <!-- Overdue Warning -->
+                            @if (isOverdue)
+                            {
+                                <div class="mt-3 bg-red-50 border border-red-200 rounded-xl p-3">
+                                    <p class="text-red-700 text-sm flex items-center">
+                                        <i class="fas fa-exclamation-triangle mr-2"></i>
+                                        This rental is overdue! Please return immediately to avoid additional fees.
+                                    </p>
+                                </div>
+                            }
+                            else if (isDueSoon)
+                            {
+                                <div class="mt-3 bg-yellow-50 border border-yellow-200 rounded-xl p-3">
+                                    <p class="text-yellow-700 text-sm flex items-center">
+                                        <i class="fas fa-clock mr-2"></i>
+                                        Due soon! Please return by @rental.DueDate.ToString("MMM dd").
+                                    </p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
+    <script>
+        // Auto-dismiss alerts after 5 seconds
+        document.addEventListener('DOMContentLoaded', function() {
+            const alerts = document.querySelectorAll('[class*="bg-"] .animate-pulse');
+            alerts.forEach(alert => {
+                setTimeout(() => {
+                    alert.remove();
+                }, 5000);
+            });
+        });
+    </script>
+</body>
+</html>
+
+@functions {
+    public string GetStatusGradient(string status)
+    {
+        return status switch
+        {
+            "Active" => "from-blue-500 to-blue-600",
+            "Returned" => "from-green-500 to-green-600",
+            "Overdue" => "from-red-500 to-red-600",
+            _ => "from-gray-500 to-gray-600"
+        };
+    }
+}
