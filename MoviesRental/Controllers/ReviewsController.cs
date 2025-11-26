@@ -47,100 +47,96 @@ namespace MoviesRental.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ReviewId,UserId,MovieId,Rating,Comment,CreatedAt")] Review review)
+        public async Task<IActionResult> Create(int MovieId, int Rating, string Comment)
         {
+            var userId = SessionManager.UserId;
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    // Set default values
-                    if (review.CreatedAt == default)
-                        review.CreatedAt = DateTime.Now;
-
-                    // Validate rating range
-                    if (review.Rating < 1 || review.Rating > 5)
+                    var review = new Review
                     {
-                        ModelState.AddModelError("Rating", "Rating must be between 1 and 5.");
-                        ViewData["MovieId"] = new SelectList(_context.Movies, "MovieId", "Title", review.MovieId);
-                        ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Name", review.UserId);
-                        return View(review);
-                    }
+                        UserId = userId.Value,
+                        MovieId = MovieId,
+                        Rating = Rating,
+                        Comment = Comment,
+                        CreatedAt = DateTime.Now
+                    };
 
-                    _context.Add(review);
+                    _context.Reviews.Add(review);
                     await _context.SaveChangesAsync();
+
+                    TempData["SuccessMessage"] = "Review created successfully!";
                     return RedirectToAction(nameof(Index));
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("", "An error occurred while creating the review: " + ex.Message);
+                    TempData["ErrorMessage"] = "Error creating review: " + ex.Message;
                 }
             }
+            else
+            {
+                TempData["ErrorMessage"] = "Please check your input and try again.";
+            }
 
-            // Use meaningful names in dropdowns
-            ViewData["MovieId"] = new SelectList(_context.Movies, "MovieId", "Title", review.MovieId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Name", review.UserId);
-            return View(review);
+            return RedirectToAction(nameof(Create));
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ReviewId,UserId,MovieId,Rating,Comment,CreatedAt")] Review review)
+        public async Task<IActionResult> Edit(int ReviewId, int MovieId, int Rating, string Comment)
         {
-            if (id != review.ReviewId)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    // Validate rating range
-                    if (review.Rating < 1 || review.Rating > 5)
+                    var existingReview = await _context.Reviews
+                        .FirstOrDefaultAsync(r => r.ReviewId == ReviewId);
+
+                    if (existingReview == null)
                     {
-                        ModelState.AddModelError("Rating", "Rating must be between 1 and 5.");
-                        ViewData["MovieId"] = new SelectList(_context.Movies, "MovieId", "Title", review.MovieId);
-                        ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Name", review.UserId);
-                        return View(review);
+                        TempData["ErrorMessage"] = "Review not found.";
+                        return RedirectToAction(nameof(Index));
                     }
 
-                    _context.Update(review);
+                    // Update the review (no permission check - admin can edit any review)
+                    existingReview.MovieId = MovieId;
+                    existingReview.Rating = Rating;
+                    existingReview.Comment = Comment;
+
                     await _context.SaveChangesAsync();
+                    TempData["SuccessMessage"] = "Review updated successfully!";
                     return RedirectToAction(nameof(Index));
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ReviewExists(review.ReviewId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("", "An error occurred while updating the review: " + ex.Message);
+                    TempData["ErrorMessage"] = "Error updating review: " + ex.Message;
                 }
             }
 
-            ViewData["MovieId"] = new SelectList(_context.Movies, "MovieId", "Title", review.MovieId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Name", review.UserId);
-            return View(review);
+            return RedirectToAction(nameof(Edit), new { id = ReviewId });
         }
+
 
         // Also update the GET methods to use proper dropdowns:
 
         // GET: Reviews/Create
         public IActionResult Create()
         {
-            ViewData["MovieId"] = new SelectList(_context.Movies, "MovieId", "Title");
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Name");
+            // Load movies for dropdown (no users needed since we get from session)
+            ViewBag.Movies = _context.Movies.Select(m => new { m.MovieId, m.Title }).ToList();
             return View();
         }
 
+
         // GET: Reviews/Edit/5
+        
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -154,10 +150,11 @@ namespace MoviesRental.Controllers
                 return NotFound();
             }
 
-            ViewData["MovieId"] = new SelectList(_context.Movies, "MovieId", "Title", review.MovieId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "Name", review.UserId);
+            // Load movies for dropdown
+            ViewBag.Movies = _context.Movies.Select(m => new { m.MovieId, m.Title }).ToList();
             return View(review);
         }
+
 
         // GET: Reviews/Delete/5
         public async Task<IActionResult> Delete(int? id)

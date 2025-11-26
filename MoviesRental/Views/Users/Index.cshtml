@@ -1,66 +1,63 @@
 ﻿@model IEnumerable<MoviesRental.Models.User>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Users";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<div class="max-w-6xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-xl border border-gray-200">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PasswordHash)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Phone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Role)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedAt)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PasswordHash)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Role)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.UserId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.UserId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-3xl font-bold text-gray-800">Users</h1>
+
+        <a asp-action="Create"
+           class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg shadow">
+            + Create New
+        </a>
+    </div>
+
+    <div class="overflow-x-auto">
+        <table class="min-w-full border border-gray-200 rounded-lg overflow-hidden">
+            <thead class="bg-gray-100 text-gray-700">
+                <tr>
+                    <th class="px-4 py-3 text-left text-sm font-semibold">Name</th>
+                    <th class="px-4 py-3 text-left text-sm font-semibold">Password Hash</th>
+                    <th class="px-4 py-3 text-left text-sm font-semibold">Email</th>
+                    <th class="px-4 py-3 text-left text-sm font-semibold">Phone</th>
+                    <th class="px-4 py-3 text-left text-sm font-semibold">Role</th>
+                    <th class="px-4 py-3 text-left text-sm font-semibold">Created At</th>
+                    <th class="px-4 py-3 text-right text-sm font-semibold">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody class="divide-y divide-gray-200">
+                @foreach (var item in Model)
+                {
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-4 py-3">@item.Name</td>
+                        <td class="px-4 py-3">@item.PasswordHash</td>
+                        <td class="px-4 py-3">@item.Email</td>
+                        <td class="px-4 py-3">@item.Phone</td>
+                        <td class="px-4 py-3">@item.Role</td>
+                        <td class="px-4 py-3">@item.CreatedAt</td>
+
+                        <td class="px-4 py-3 text-right">
+                            <a asp-action="Edit" asp-route-id="@item.UserId"
+                               class="text-indigo-600 hover:underline mr-3">
+                                Edit
+                            </a>
+                            <a asp-action="Details" asp-route-id="@item.UserId"
+                               class="text-green-600 hover:underline mr-3">
+                                Details
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@item.UserId"
+                               class="text-red-600 hover:underline">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

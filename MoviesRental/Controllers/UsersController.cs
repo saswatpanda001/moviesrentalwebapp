@@ -100,16 +100,26 @@ namespace MoviesRental.Controllers
         public async Task<IActionResult> Edit(int id, [Bind("UserId,Name,PasswordHash,Email,Phone,Role,CreatedAt")] User user)
         {
             if (id != user.UserId)
-            {
                 return NotFound();
-            }
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    // Hash the password before updating
-                    user.PasswordHash = HashPassword(user.PasswordHash);
+                    // Fetch the original user
+                    var originalUser = await _context.Users.AsNoTracking().FirstOrDefaultAsync(u => u.UserId == id);
+                    if (originalUser == null) return NotFound();
+
+                    // Only hash if password is changed
+                    if (!string.IsNullOrEmpty(user.PasswordHash) && user.PasswordHash != originalUser.PasswordHash)
+                    {
+                        user.PasswordHash = HashPassword(user.PasswordHash);
+                    }
+                    else
+                    {
+                        // Keep the old hash
+                        user.PasswordHash = originalUser.PasswordHash;
+                    }
 
                     _context.Update(user);
                     await _context.SaveChangesAsync();
@@ -117,18 +127,19 @@ namespace MoviesRental.Controllers
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!UserExists(user.UserId))
-                    {
                         return NotFound();
-                    }
                     else
-                    {
                         throw;
-                    }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(user);
         }
+
+
+
 
         private string HashPassword(string password)
         {

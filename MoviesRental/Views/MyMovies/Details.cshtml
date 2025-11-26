@@ -125,7 +125,7 @@
                                     </div>
                                     <div>
                                         <p class="text-sm text-gray-600">Rental Price</p>
-                                        <p class="font-semibold text-green-600 text-xl">@Model.RentalPrice.ToString("C2")<span class="text-sm text-gray-600">/day</span></p>
+                                        <p class="font-semibold text-green-600 text-xl">$@Model.RentalPrice.ToString()<span class="text-sm text-gray-600">/day</span></p>
                                     </div>
                                 </div>
                             </div>
@@ -343,7 +343,7 @@
                         </div>
                         <div class="flex justify-between items-center p-3 bg-purple-50 rounded-xl">
                             <span class="text-gray-600">Rental Price</span>
-                            <span class="font-bold text-purple-600">@Model.RentalPrice.ToString("C2")/day</span>
+                            <span class="font-bold text-purple-600">$@Model.RentalPrice.ToString()/day</span>
                         </div>
                     </div>
                 </div>

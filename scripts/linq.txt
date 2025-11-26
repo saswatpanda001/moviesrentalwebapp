@@ -1,0 +1,159 @@
+// Query to get all users with their rental and review counts (FIXED)
+var usersWithActivity = _context.Users
+    .Select(u => new
+    {
+        u.UserId,
+        u.Name,
+        u.Email,
+        u.Role,
+        u.CreatedAt,
+        TotalRentals = u.Rentals.Count,
+        TotalReviews = u.Reviews.Count,
+        LastRentalDate = u.Rentals.OrderByDescending(r => r.RentedOn)
+                                 .Select(r => (DateTime?)r.RentedOn)
+                                 .FirstOrDefault() // This handles null values
+    })
+    .ToList();
+
+// Display results
+foreach (var user in usersWithActivity)
+{
+    Console.WriteLine($"User: {user.Name}, Email: {user.Email}, Role: {user.Role}");
+    Console.WriteLine($"Rentals: {user.TotalRentals}, Reviews: {user.TotalReviews}");
+    Console.WriteLine($"Last Rental: {(user.LastRentalDate?.ToString("MMM dd, yyyy") ?? "No rentals")}");
+    Console.WriteLine("---");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Query to get movies with average ratings and rental statistics
+var moviesWithStats = _context.Movies
+    .Select(m => new
+    {
+        m.MovieId,
+        m.Title,
+        m.Genre,
+        m.RentalPrice,
+        m.Stock,
+        AverageRating = m.Reviews.Average(r => (double?)r.Rating) ?? 0,
+        TotalReviews = m.Reviews.Count,
+        TotalRentals = m.Rentals.Count,
+        CurrentlyRented = m.Rentals.Count(r => r.ReturnedOn == null)
+    })
+    .OrderByDescending(m => m.AverageRating)
+    .ToList();
+
+// Display results
+foreach (var movie in moviesWithStats.Take(5))
+{
+    Console.WriteLine($"Movie: {movie.Title}, Genre: {movie.Genre}");
+    Console.WriteLine($"Rating: {movie.AverageRating:F1}/5 ({movie.TotalReviews} reviews)");
+    Console.WriteLine($"Rentals: {movie.TotalRentals}, Currently Rented: {movie.CurrentlyRented}");
+    Console.WriteLine($"Price: ${movie.RentalPrice}, Stock: {movie.Stock}");
+    Console.WriteLine("---");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Query to get currently active rentals (not returned) with user and movie info
+var userCarts = _context.Carts
+    .Include(c => c.CartItems)
+        .ThenInclude(ci => ci.Movie)
+    .Include(c => c.User)
+    .Where(c => c.CartItems.Any())
+    .Select(c => new
+    {
+        c.CartId,
+        UserName = c.User.Name,
+        c.CreatedAt,
+        TotalItems = c.CartItems.Count,
+        TotalCost = c.CartItems.Sum(ci => ci.Movie.RentalPrice * ci.Quantity),
+        CartItems = c.CartItems.Select(ci => new
+        {
+            ci.Movie.Title,
+            ci.Movie.Genre,
+            ci.Quantity,
+            ci.RentalDays,
+            ItemTotal = ci.Movie.RentalPrice * ci.Quantity
+        }).ToList()
+    })
+    .ToList();
+
+
+// Display results
+foreach (var rental in activeRentals)
+{
+    Console.WriteLine($"Rental ID: {rental.RentalId}");
+    Console.WriteLine($"User: {rental.UserName} ({rental.UserEmail})");
+    Console.WriteLine($"Movie: {rental.MovieTitle}");
+    Console.WriteLine($"Rented: {rental.RentedOn:MMM dd, yyyy}");
+    Console.WriteLine($"Due: {rental.DueDate:MMM dd, yyyy} ({rental.DaysRemaining} days remaining)");
+    Console.WriteLine($"Price: ${rental.Price}");
+    Console.WriteLine("---");
+}
+
+
+
+
+
+
+
+
+// Query to get user carts with their items and total cost
+var userCarts = dbContext.Carts
+    .Select(c => new
+    {
+        c.CartId,
+        UserName = c.User.Name,
+        c.CreatedAt,
+        TotalItems = c.CartItems.Count,
+        TotalCost = c.CartItems.Sum(ci => ci.Movie.RentalPrice * ci.Quantity),
+        CartItems = c.CartItems.Select(ci => new
+        {
+            ci.Movie.Title,
+            ci.Movie.Genre,
+            ci.Quantity,
+            ci.RentalDays,
+            ItemTotal = ci.Movie.RentalPrice * ci.Quantity
+        })
+    })
+    .Where(c => c.TotalItems > 0)
+    .ToList();
+
+// Display results
+foreach (var cart in userCarts)
+{
+    Console.WriteLine($"Cart ID: {cart.CartId}, User: {cart.UserName}");
+    Console.WriteLine($"Total Items: {cart.TotalItems}, Total Cost: ${cart.TotalCost}");
+    Console.WriteLine("Items:");
+    
+    foreach (var item in cart.CartItems)
+    {
+        Console.WriteLine($"  - {item.Title} ({item.Genre})");
+        Console.WriteLine($"    Qty: {item.Quantity}, Days: {item.RentalDays}, Cost: ${item.ItemTotal}");
+    }
+    Console.WriteLine("---");
+}
+
+

@@ -1,66 +1,74 @@
 ﻿@model IEnumerable<MoviesRental.Models.Payment>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Payments";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<div class="max-w-7xl mx-auto mt-10">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Amount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PaymentMethod)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PaidOn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rental)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentMethod)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaidOn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rental.RentalId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.UserId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PaymentId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PaymentId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PaymentId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-3xl font-bold text-gray-800">Payments</h1>
+
+      
+    </div>
+
+    <!-- Table Container -->
+    <div class="overflow-x-auto bg-white rounded-xl shadow border border-gray-200">
+        <table class="min-w-full text-left border-collapse">
+            <thead class="bg-gray-100 text-gray-700 uppercase text-sm">
+                <tr>
+                    <th class="px-6 py-3">Amount</th>
+                    <th class="px-6 py-3">Method</th>
+                    <th class="px-6 py-3">Status</th>
+                    <th class="px-6 py-3">Paid On</th>
+                    <th class="px-6 py-3">Rental</th>
+                    <th class="px-6 py-3">User</th>
+                    <th class="px-6 py-3 text-center">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody class="text-gray-700">
+                @foreach (var item in Model)
+                {
+                    <tr class="border-t hover:bg-gray-50 transition">
+                        <td class="px-6 py-4">@item.Amount</td>
+                        <td class="px-6 py-4">@item.PaymentMethod</td>
+                        <td class="px-6 py-4">
+                            <span class="px-3 py-1 text-sm font-medium rounded-md
+                                    @(item.Status == "Completed" ? "bg-green-100 text-green-700" :
+                                                                    item.Status == "Pending" ? "bg-yellow-100 text-yellow-700" :
+                                                                    "bg-red-100 text-red-700")">
+                            @item.Status
+                        </span>
+                    </td>
+                    <td class="px-6 py-4">@item.PaidOn</td>
+                    <td class="px-6 py-4">@item.Rental.RentalId</td>
+                    <td class="px-6 py-4">@item.User.UserId</td>
+
+                        <!-- Action Buttons -->
+                        <td class="px-6 py-4 flex justify-center gap-3">
+
+                       
+                            <span class="text-gray-400">|</span>
+
+                            <a asp-action="Details" asp-route-id="@item.PaymentId"
+                               class="text-green-600 hover:text-green-800 font-medium">
+                                Details
+                            </a>
+
+                            <span class="text-gray-400">|</span>
+
+                            <a asp-action="Delete" asp-route-id="@item.PaymentId"
+                               class="text-red-600 hover:text-red-800 font-medium">
+                                Delete
+                            </a>
+
+                        </td>
+                    </tr>
+                                }
+            </tbody>
+        </table>
+    </div>
+</div>

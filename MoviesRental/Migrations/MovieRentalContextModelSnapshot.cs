@@ -84,6 +84,7 @@ namespace MoviesRental.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MovieId"));
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Genre")
@@ -215,6 +216,7 @@ namespace MoviesRental.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("Rating")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
@@ -258,17 +260,28 @@ namespace MoviesRental.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Role")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId")
                         .HasName("PK__Users__1788CC4C0C6F1E16");
 
-                    b.HasIndex(new[] { "Email" }, "UQ__Users__A9D105348BEB5DC2")
-                        .IsUnique();
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasDatabaseName("UQ_Users_Email");
+
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasDatabaseName("UQ_Users_Name");
+
+                    b.HasIndex("Phone")
+                        .IsUnique()
+                        .HasDatabaseName("UQ_Users_Phone");
 
                     b.ToTable("Users");
                 });

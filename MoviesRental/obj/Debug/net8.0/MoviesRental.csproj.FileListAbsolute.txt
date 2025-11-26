@@ -568,3 +568,4 @@ C:\MoviesRental\MoviesRental\bin\Debug\net8.0\Microsoft.AspNetCore.TestHost.dll
 C:\MoviesRental\MoviesRental\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.InMemory.dll
 C:\MoviesRental\MoviesRental\bin\Debug\net8.0\Moq.dll
 C:\MoviesRental\MoviesRental\obj\Debug\net8.0\MvcTestingAppManifest.json
+C:\MoviesRental\MoviesRental\obj\Debug\net8.0\MoviesRental.sourcelink.json

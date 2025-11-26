@@ -2,51 +2,55 @@
 
 @{
     ViewData["Title"] = "Create Review";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="max-w-xl mx-auto mt-10 bg-white shadow-lg rounded-xl p-8 border border-gray-200">
     <h1 class="text-3xl font-bold text-gray-800 mb-6">Create Review</h1>
 
-    <form asp-action="Create" class="space-y-6">
-        <div asp-validation-summary="ModelOnly" class="text-red-500 mb-4"></div>
-
-        <!-- User -->
-        <div>
-            <label asp-for="UserId" class="block font-semibold text-gray-700 mb-1">User</label>
-            <select asp-for="UserId" asp-items="ViewBag.UserId"
-                    class="w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 transition p-3">
-                <option value="">-- Select User --</option>
-            </select>
-            <span asp-validation-for="UserId" class="text-red-500 text-sm"></span>
+    <!-- Success/Error Messages -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800">
+            @TempData["SuccessMessage"]
         </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
+            @TempData["ErrorMessage"]
+        </div>
+    }
 
-        <!-- Movie -->
+    <form asp-action="Create" method="post" class="space-y-6">
+        @Html.AntiForgeryToken()
+
+        <!-- Movie Selection -->
         <div>
-            <label asp-for="MovieId" class="block font-semibold text-gray-700 mb-1">Movie</label>
-            <select asp-for="MovieId" asp-items="ViewBag.MovieId"
-                    class="w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 transition p-3">
+            <label for="MovieId" class="block font-semibold text-gray-700 mb-1">Movie *</label>
+            <select name="MovieId" id="MovieId" required
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                 <option value="">-- Select Movie --</option>
+                @foreach (var movie in ViewBag.Movies)
+                {
+                    <option value="@movie.MovieId">@movie.Title</option>
+                }
             </select>
-            <span asp-validation-for="MovieId" class="text-red-500 text-sm"></span>
         </div>
 
         <!-- Rating -->
         <div>
-            <label asp-for="Rating" class="block font-semibold text-gray-700 mb-1">Rating (1-5)</label>
-            <input asp-for="Rating" type="number" min="1" max="5"
-                   class="w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 transition p-3"
-                   placeholder="Enter rating from 1 to 5" />
-            <span asp-validation-for="Rating" class="text-red-500 text-sm"></span>
+            <label for="Rating" class="block font-semibold text-gray-700 mb-1">Rating (1-5) *</label>
+            <input type="number" name="Rating" id="Rating" min="1" max="5" required
+                   class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                   placeholder="Enter rating from 1 to 5">
         </div>
 
         <!-- Comment -->
         <div>
-            <label asp-for="Comment" class="block font-semibold text-gray-700 mb-1">Comment</label>
-            <textarea asp-for="Comment" rows="4"
-                      class="w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 transition p-3"
+            <label for="Comment" class="block font-semibold text-gray-700 mb-1">Comment</label>
+            <textarea name="Comment" id="Comment" rows="4"
+                      class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       placeholder="Enter your review comments"></textarea>
-            <span asp-validation-for="Comment" class="text-red-500 text-sm"></span>
         </div>
 
         <!-- Submit -->
@@ -62,9 +66,3 @@
         </div>
     </form>
 </div>
-
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}

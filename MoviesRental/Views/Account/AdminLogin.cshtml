@@ -3,49 +3,50 @@
     ViewData["Title"] = "Admin Login";
 }
 
-<div class="min-h-screen flex items-center justify-center bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md w-full space-y-8">
-        <div>
-            <div class="mx-auto h-12 w-12 bg-red-600 rounded-full flex items-center justify-center">
-                <i class="fas fa-lock text-white text-xl"></i>
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8 bg-gray-850 p-8 rounded-2xl shadow-2xl border border-gray-700">
+        <div class="text-center">
+            <div class="mx-auto h-14 w-14 bg-red-600 rounded-full flex items-center justify-center shadow-lg">
+                <i class="fas fa-lock text-white text-2xl"></i>
             </div>
             <h2 class="mt-6 text-center text-3xl font-extrabold text-white">
                 Admin Portal
             </h2>
-            <p class="mt-2 text-center text-sm text-gray-300">
+            <p class="mt-2 text-center text-sm text-gray-400">
                 Restricted access - Admin credentials required
             </p>
         </div>
-        <form class="mt-8 space-y-6" asp-action="AdminLogin" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-red-400"></div>
 
-            <div class="rounded-md shadow-sm -space-y-px">
+        <form class="mt-8 space-y-6" asp-action="AdminLogin" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-red-500 text-sm mb-2"></div>
+
+            <div class="rounded-md shadow-sm space-y-4">
                 <div>
                     <label asp-for="Email" class="sr-only">Email address</label>
                     <input asp-for="Email" type="email" autocomplete="email" required
-                           class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-700 bg-gray-800 text-white placeholder-gray-400 rounded-t-md focus:outline-none focus:ring-red-500 focus:border-red-500 focus:z-10 sm:text-sm"
+                           class="appearance-none rounded-md relative block w-full px-4 py-2 border border-gray-600 bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 sm:text-sm"
                            placeholder="Admin email">
-                    <span asp-validation-for="Email" class="text-red-400 text-sm"></span>
+                    <span asp-validation-for="Email" class="text-red-500 text-sm"></span>
                 </div>
                 <div>
                     <label asp-for="Password" class="sr-only">Password</label>
                     <input asp-for="Password" type="password" autocomplete="current-password" required
-                           class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-700 bg-gray-800 text-white placeholder-gray-400 rounded-b-md focus:outline-none focus:ring-red-500 focus:border-red-500 focus:z-10 sm:text-sm"
+                           class="appearance-none rounded-md relative block w-full px-4 py-2 border border-gray-600 bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 sm:text-sm"
                            placeholder="Admin password">
-                    <span asp-validation-for="Password" class="text-red-400 text-sm"></span>
+                    <span asp-validation-for="Password" class="text-red-500 text-sm"></span>
                 </div>
             </div>
 
             <div>
                 <button type="submit"
-                        class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                        class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-semibold rounded-lg text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition">
                     <i class="fas fa-sign-in-alt mr-2"></i>
                     Sign in as Admin
                 </button>
             </div>
 
-            <div class="text-center">
-                <p class="text-sm text-gray-400">
+            <div class="text-center mt-4 text-gray-400 text-sm">
+                <p>
                     Demo Admin Account:<br>
                     <strong>Email:</strong> admin@movierental.com<br>
                     <strong>Password:</strong> admin123
@@ -53,11 +54,9 @@
             </div>
 
             <div class="text-center mt-4">
-                <p class="text-sm text-gray-400">
-                    <a href="@Url.Action("Login")" class="font-medium text-red-400 hover:text-red-300">
-                        ← Back to User Login
-                    </a>
-                </p>
+                <a href="@Url.Action("Login")" class="text-red-400 hover:text-red-300 font-medium text-sm">
+                    ← Back to User Login
+                </a>
             </div>
         </form>
     </div>
@@ -68,3 +67,5 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+

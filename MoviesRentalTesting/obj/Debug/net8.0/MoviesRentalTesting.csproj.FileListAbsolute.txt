@@ -654,3 +654,4 @@ C:\MoviesRental\MoviesRentalTesting\obj\Debug\net8.0\refint\MoviesRentalTesting.
 C:\MoviesRental\MoviesRentalTesting\obj\Debug\net8.0\MoviesRentalTesting.pdb
 C:\MoviesRental\MoviesRentalTesting\obj\Debug\net8.0\MoviesRentalTesting.genruntimeconfig.cache
 C:\MoviesRental\MoviesRentalTesting\obj\Debug\net8.0\ref\MoviesRentalTesting.dll
+C:\MoviesRental\MoviesRentalTesting\obj\Debug\net8.0\MoviesRentalTesting.sourcelink.json

@@ -20,13 +20,15 @@ namespace MoviesRental.Controllers
 
         public static int? UserId => _httpContextAccessor?.HttpContext?.Session.GetInt32("UserId");
 
+        public static string? Email => _httpContextAccessor?.HttpContext?.Session.GetString("Email");
+
         // Helper method to set session data
         public static void SetUserSession(HttpContext context, User user)
         {
             context.Session.SetInt32("UserId", user.UserId);
             context.Session.SetString("UserName", user.Name);
             context.Session.SetString("UserRole", user.Role);
-            context.Session.SetString("UserEmail", user.Email);
+            context.Session.SetString("Email", user.Email);
         }
 
         // Helper method to clear session

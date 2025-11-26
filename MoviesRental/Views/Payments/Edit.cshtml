@@ -1,60 +1,89 @@
 ﻿@model MoviesRental.Models.Payment
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Payment";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
+<div class="max-w-3xl mx-auto mt-10 bg-white shadow-lg rounded-xl p-8 border border-gray-200">
 
-<h4>Payment</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="PaymentId" />
-            <div class="form-group">
-                <label asp-for="RentalId" class="control-label"></label>
-                <select asp-for="RentalId" class="form-control" asp-items="ViewBag.RentalId"></select>
-                <span asp-validation-for="RentalId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
-                <span asp-validation-for="UserId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Amount" class="control-label"></label>
-                <input asp-for="Amount" class="form-control" />
-                <span asp-validation-for="Amount" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PaymentMethod" class="control-label"></label>
-                <input asp-for="PaymentMethod" class="form-control" />
-                <span asp-validation-for="PaymentMethod" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PaidOn" class="control-label"></label>
-                <input asp-for="PaidOn" class="form-control" />
-                <span asp-validation-for="PaidOn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">Edit Payment</h1>
+    <p class="text-gray-600 mb-6">Update the details of the payment record.</p>
+
+    <form asp-action="Edit" class="space-y-6">
+
+        <div asp-validation-summary="ModelOnly" class="text-red-600"></div>
+        <input type="hidden" asp-for="PaymentId" />
+
+        <!-- Rental -->
+        <div>
+            <label asp-for="RentalId" class="block text-sm font-medium text-gray-700 mb-1"></label>
+            <select asp-for="RentalId" asp-items="ViewBag.RentalId"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition">
+            </select>
+            <span asp-validation-for="RentalId" class="text-red-600 text-sm"></span>
+        </div>
+
+        <!-- User -->
+        <div>
+            <label asp-for="UserId" class="block text-sm font-medium text-gray-700 mb-1"></label>
+            <select asp-for="UserId" asp-items="ViewBag.UserId"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition">
+            </select>
+            <span asp-validation-for="UserId" class="text-red-600 text-sm"></span>
+        </div>
+
+        <!-- Amount -->
+        <div>
+            <label asp-for="Amount" class="block text-sm font-medium text-gray-700 mb-1"></label>
+            <input asp-for="Amount"
+                   class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition" />
+            <span asp-validation-for="Amount" class="text-red-600 text-sm"></span>
+        </div>
+
+        <!-- Payment Method -->
+        <div>
+            <label asp-for="PaymentMethod" class="block text-sm font-medium text-gray-700 mb-1"></label>
+            <input asp-for="PaymentMethod"
+                   class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition" />
+            <span asp-validation-for="PaymentMethod" class="text-red-600 text-sm"></span>
+        </div>
+
+        <!-- Status -->
+        <div>
+            <label asp-for="Status" class="block text-sm font-medium text-gray-700 mb-1"></label>
+            <input asp-for="Status"
+                   class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition" />
+            <span asp-validation-for="Status" class="text-red-600 text-sm"></span>
+        </div>
+
+        <!-- Paid On -->
+        <div>
+            <label asp-for="PaidOn" class="block text-sm font-medium text-gray-700 mb-1"></label>
+            <input asp-for="PaidOn"
+                   class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition" />
+            <span asp-validation-for="PaidOn" class="text-red-600 text-sm"></span>
+        </div>
+
+        <!-- Save Button -->
+        <button type="submit"
+                class="w-full py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition font-medium">
+            Save Changes
+        </button>
+
+    </form>
+
+    <!-- Back Link -->
+    <div class="mt-6 text-center">
+        <a asp-action="Index"
+           class="text-gray-700 hover:text-gray-900 font-medium transition">
+            ← Back to List
+        </a>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

@@ -1,60 +1,88 @@
 ﻿@model MoviesRental.Models.User
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit User";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
+<div class="max-w-3xl mx-auto mt-10 bg-white shadow-lg rounded-xl p-8 border border-gray-200">
 
-<h4>User</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="UserId" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PasswordHash" class="control-label"></label>
-                <input asp-for="PasswordHash" class="form-control" />
-                <span asp-validation-for="PasswordHash" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Phone" class="control-label"></label>
-                <input asp-for="Phone" class="form-control" />
-                <span asp-validation-for="Phone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Role" class="control-label"></label>
-                <input asp-for="Role" class="form-control" />
-                <span asp-validation-for="Role" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedAt" class="control-label"></label>
-                <input asp-for="CreatedAt" class="form-control" />
-                <span asp-validation-for="CreatedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">Edit User</h1>
+    <p class="text-gray-600 mb-6">Update user details below.</p>
+
+    <form asp-action="Edit" class="space-y-5">
+
+        <input type="hidden" asp-for="UserId" />
+
+        <div asp-validation-summary="ModelOnly" class="text-red-500 mb-4"></div>
+
+        <!-- Name -->
+        <div>
+            <label asp-for="Name" class="block text-gray-700 font-medium mb-1"></label>
+            <input asp-for="Name"
+                   class="w-full border-gray-300 rounded-lg shadow-sm p-2 focus:ring-indigo-500 focus:border-indigo-500" />
+            <span asp-validation-for="Name" class="text-red-500 text-sm"></span>
+        </div>
+
+        <!-- PasswordHash -->
+        <div>
+            <label asp-for="PasswordHash" class="block text-gray-700 font-medium mb-1"></label>
+            <input asp-for="PasswordHash"
+                   class="w-full border-gray-300 rounded-lg shadow-sm p-2 focus:ring-indigo-500 focus:border-indigo-500" />
+            <span asp-validation-for="PasswordHash" class="text-red-500 text-sm"></span>
+        </div>
+
+        <!-- Email -->
+        <div>
+            <label asp-for="Email" class="block text-gray-700 font-medium mb-1"></label>
+            <input asp-for="Email"
+                   class="w-full border-gray-300 rounded-lg shadow-sm p-2 focus:ring-indigo-500 focus:border-indigo-500" />
+            <span asp-validation-for="Email" class="text-red-500 text-sm"></span>
+        </div>
+
+        <!-- Phone -->
+        <div>
+            <label asp-for="Phone" class="block text-gray-700 font-medium mb-1"></label>
+            <input asp-for="Phone"
+                   class="w-full border-gray-300 rounded-lg shadow-sm p-2 focus:ring-indigo-500 focus:border-indigo-500" />
+            <span asp-validation-for="Phone" class="text-red-500 text-sm"></span>
+        </div>
+
+        <!-- Role -->
+        <div>
+            <label asp-for="Role" class="block text-gray-700 font-medium mb-1"></label>
+            <input asp-for="Role"
+                   class="w-full border-gray-300 rounded-lg shadow-sm p-2 focus:ring-indigo-500 focus:border-indigo-500" />
+            <span asp-validation-for="Role" class="text-red-500 text-sm"></span>
+        </div>
+
+        <!-- Created At -->
+        <div>
+            <label asp-for="CreatedAt" class="block text-gray-700 font-medium mb-1"></label>
+            <input asp-for="CreatedAt"
+                   class="w-full border-gray-300 rounded-lg shadow-sm p-2 focus:ring-indigo-500 focus:border-indigo-500" />
+            <span asp-validation-for="CreatedAt" class="text-red-500 text-sm"></span>
+        </div>
+
+        <!-- Save Button -->
+        <div class="pt-4">
+            <button type="submit"
+                    class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-lg shadow">
+                Save
+            </button>
+        </div>
+    </form>
+
+    <div class="mt-6 text-center">
+        <a asp-action="Index"
+           class="text-indigo-600 hover:underline text-sm">
+            ← Back to List
+        </a>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

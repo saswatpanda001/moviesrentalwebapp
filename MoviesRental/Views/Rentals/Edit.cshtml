@@ -1,60 +1,87 @@
 ﻿@model MoviesRental.Models.Rental
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Rental";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Edit</h1>
+<div class="max-w-3xl mx-auto mt-10 bg-white shadow-lg rounded-xl p-8 border border-gray-200">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">Edit Rental</h1>
+    <hr class="mb-6" />
 
-<h4>Rental</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="RentalId" />
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
-                <span asp-validation-for="UserId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MovieId" class="control-label"></label>
-                <select asp-for="MovieId" class="form-control" asp-items="ViewBag.MovieId"></select>
-                <span asp-validation-for="MovieId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RentedOn" class="control-label"></label>
-                <input asp-for="RentedOn" class="form-control" />
-                <span asp-validation-for="RentedOn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DueDate" class="control-label"></label>
-                <input asp-for="DueDate" class="form-control" />
-                <span asp-validation-for="DueDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ReturnedOn" class="control-label"></label>
-                <input asp-for="ReturnedOn" class="form-control" />
-                <span asp-validation-for="ReturnedOn" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+    <form asp-action="Edit" class="space-y-6">
+        <div asp-validation-summary="ModelOnly" class="text-red-600 text-sm"></div>
+
+        <input type="hidden" asp-for="RentalId" />
+
+        <!-- User -->
+        <div>
+            <label asp-for="UserId" class="block text-gray-700 font-medium mb-1"></label>
+            <select asp-for="UserId" asp-items="ViewBag.UserId"
+                    class="w-full rounded-lg border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+            </select>
+            <span asp-validation-for="UserId" class="text-red-600 text-sm"></span>
+        </div>
+
+        <!-- Movie -->
+        <div>
+            <label asp-for="MovieId" class="block text-gray-700 font-medium mb-1"></label>
+            <select asp-for="MovieId" asp-items="ViewBag.MovieId"
+                    class="w-full rounded-lg border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+            </select>
+            <span asp-validation-for="MovieId" class="text-red-600 text-sm"></span>
+        </div>
+
+        <!-- Rented On -->
+        <div>
+            <label asp-for="RentedOn" class="block text-gray-700 font-medium mb-1"></label>
+            <input asp-for="RentedOn"
+                   class="w-full rounded-lg border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
+            <span asp-validation-for="RentedOn" class="text-red-600 text-sm"></span>
+        </div>
+
+        <!-- Due Date -->
+        <div>
+            <label asp-for="DueDate" class="block text-gray-700 font-medium mb-1"></label>
+            <input asp-for="DueDate"
+                   class="w-full rounded-lg border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
+            <span asp-validation-for="DueDate" class="text-red-600 text-sm"></span>
+        </div>
+
+        <!-- Returned On -->
+        <div>
+            <label asp-for="ReturnedOn" class="block text-gray-700 font-medium mb-1"></label>
+            <input asp-for="ReturnedOn"
+                   class="w-full rounded-lg border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
+            <span asp-validation-for="ReturnedOn" class="text-red-600 text-sm"></span>
+        </div>
+
+        <!-- Price -->
+        <div>
+            <label asp-for="Price" class="block text-gray-700 font-medium mb-1"></label>
+            <input asp-for="Price"
+                   class="w-full rounded-lg border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />
+            <span asp-validation-for="Price" class="text-red-600 text-sm"></span>
+        </div>
+
+        <!-- Save Button -->
+        <div class="pt-4">
+            <button type="submit"
+                    class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-lg shadow">
+                Save
+            </button>
+        </div>
+    </form>
+
+    <div class="mt-6 text-center">
+        <a asp-action="Index" class="text-indigo-600 hover:underline text-sm">
+            ← Back to List
+        </a>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

@@ -1,54 +1,75 @@
 ﻿@model MoviesRental.Models.User
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create User";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<div class="max-w-2xl mx-auto mt-10 bg-white shadow-lg rounded-xl p-8">
+    <h1 class="text-3xl font-bold mb-6 text-gray-800">Create User</h1>
 
-<h4>User</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PasswordHash" class="control-label"></label>
-                <input asp-for="PasswordHash" class="form-control" />
-                <span asp-validation-for="PasswordHash" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Phone" class="control-label"></label>
-                <input asp-for="Phone" class="form-control" />
-                <span asp-validation-for="Phone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Role" class="control-label"></label>
-                <input asp-for="Role" class="form-control" />
-                <span asp-validation-for="Role" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    <form asp-action="Create" class="space-y-6">
+        <div asp-validation-summary="ModelOnly" class="text-red-500"></div>
+
+        <!-- Name -->
+        <div>
+            <label asp-for="Name" class="block text-gray-700 font-medium mb-1"></label>
+            <input asp-for="Name"
+                   class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+            <span asp-validation-for="Name" class="text-red-500 text-sm"></span>
+        </div>
+
+        <!-- Password -->
+        <div>
+            <label asp-for="PasswordHash" class="block text-gray-700 font-medium mb-1"></label>
+            <input asp-for="PasswordHash"
+                   class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+            <span asp-validation-for="PasswordHash" class="text-red-500 text-sm"></span>
+        </div>
+
+        <!-- Email -->
+        <div>
+            <label asp-for="Email" class="block text-gray-700 font-medium mb-1"></label>
+            <input asp-for="Email"
+                   class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+            <span asp-validation-for="Email" class="text-red-500 text-sm"></span>
+        </div>
+
+        <!-- Phone -->
+        <div>
+            <label asp-for="Phone" class="block text-gray-700 font-medium mb-1"></label>
+            <input asp-for="Phone"
+                   class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+            <span asp-validation-for="Phone" class="text-red-500 text-sm"></span>
+        </div>
+
+        <!-- Role -->
+        <div>
+            <label asp-for="Role" class="block text-gray-700 font-medium mb-1"></label>
+            <input asp-for="Role"
+                   class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+            <span asp-validation-for="Role" class="text-red-500 text-sm"></span>
+        </div>
+
+        <!-- Button -->
+        <div class="pt-4">
+            <button type="submit"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold shadow">
+                Create
+            </button>
+        </div>
+    </form>
+
+    <div class="mt-6 text-center">
+        <a asp-action="Index"
+           class="text-blue-600 hover:underline font-medium">
+            Back to List
+        </a>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

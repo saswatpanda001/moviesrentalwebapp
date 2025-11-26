@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MoviesRental.Models;
+using MoviesRental.ViewModels;
+using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 using System.Text;
-using MoviesRental.ViewModels;
 
 namespace MoviesRental.Controllers
 {
@@ -22,50 +23,55 @@ namespace MoviesRental.Controllers
             return View();
         }
 
-        // POST: Register
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                // Check if email already exists
+                // Check unique Name, Email, Phone
                 if (await _context.Users.AnyAsync(u => u.Email == model.Email))
                 {
                     ModelState.AddModelError("Email", "Email is already registered.");
-                    return View(model);
                 }
-
-                // Check if passwords match
-                if (model.Password != model.ConfirmPassword)
+                if (await _context.Users.AnyAsync(u => u.Name == model.Name))
                 {
-                    ModelState.AddModelError("ConfirmPassword", "Passwords do not match.");
-                    return View(model);
+                    ModelState.AddModelError("Name", "Name is already taken.");
+                }
+                if (!string.IsNullOrEmpty(model.Phone) && await _context.Users.AnyAsync(u => u.Phone == model.Phone))
+                {
+                    ModelState.AddModelError("Phone", "Phone number is already registered.");
                 }
 
-                // Create new user
+                if (!ModelState.IsValid)
+                    return View(model);
+
+                // Hash password (example using SHA256)
+                var hashedPassword = HashPassword(model.Password);
+
                 var user = new User
                 {
                     Name = model.Name,
                     Email = model.Email,
-                    PasswordHash = HashPassword(model.Password), // Hash the password
+                    PasswordHash = hashedPassword,
                     Phone = model.Phone,
-                    Role = "User", // Default role is User
+                    Role = "User",
                     CreatedAt = DateTime.Now
                 };
 
-                // Add to database
                 _context.Users.Add(user);
                 await _context.SaveChangesAsync();
 
-                // Auto-login after registration
+                // Auto-login
                 SessionManager.SetUserSession(HttpContext, user);
-                // Redirect to user dashboard
                 return RedirectToAction("UserDashboard");
             }
 
             return View(model);
         }
+
+
+
 
         // GET: Login page
         public IActionResult Login()
@@ -90,8 +96,7 @@ namespace MoviesRental.Controllers
                 {
                     SessionManager.SetUserSession(HttpContext, user);
 
-                    // Store user info in session
-                    SessionManager.SetUserSession(HttpContext, user);
+                   
 
                     // Redirect based on role
                     if (user.Role == "User")
@@ -163,6 +168,8 @@ namespace MoviesRental.Controllers
                         ModelState.AddModelError("Name", "Name is already taken by another user.");
                         return View(model);
                     }
+
+
 
                     if (emailExists)
                     {
@@ -303,6 +310,7 @@ namespace MoviesRental.Controllers
         // GET: Reset Password page
         public IActionResult ResetPassword()
         {
+            ViewBag.Email = SessionManager.Email;
             return View();
         }
 

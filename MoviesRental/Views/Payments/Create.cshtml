@@ -1,47 +1,73 @@
 ﻿@model MoviesRental.Models.Payment
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Payment";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<div class="max-w-3xl mx-auto mt-10 bg-white shadow-lg rounded-xl p-8 border border-gray-200">
 
-<h4>Payment</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="RentalId" class="control-label"></label>
-                <select asp-for="RentalId" class ="form-control" asp-items="ViewBag.RentalId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Amount" class="control-label"></label>
-                <input asp-for="Amount" class="form-control" />
-                <span asp-validation-for="Amount" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PaymentMethod" class="control-label"></label>
-                <input asp-for="PaymentMethod" class="form-control" />
-                <span asp-validation-for="PaymentMethod" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">Create Payment</h1>
+    <p class="text-gray-600 mb-6">Fill in the details to add a new payment.</p>
+
+    <form asp-action="Create" class="space-y-6">
+
+        <div asp-validation-summary="ModelOnly" class="text-red-600"></div>
+
+        <!-- Rental -->
+        <div>
+            <label asp-for="RentalId" class="block text-sm font-medium text-gray-700 mb-1"></label>
+            <select asp-for="RentalId" asp-items="ViewBag.RentalId"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+            </select>
+        </div>
+
+        <!-- User -->
+        <div>
+            <label asp-for="UserId" class="block text-sm font-medium text-gray-700 mb-1"></label>
+            <select asp-for="UserId" asp-items="ViewBag.UserId"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+            </select>
+        </div>
+
+        <!-- Amount -->
+        <div>
+            <label asp-for="Amount" class="block text-sm font-medium text-gray-700 mb-1"></label>
+            <input asp-for="Amount"
+                   class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" />
+            <span asp-validation-for="Amount" class="text-red-600 text-sm"></span>
+        </div>
+
+        <!-- Payment Method -->
+        <div>
+            <label asp-for="PaymentMethod" class="block text-sm font-medium text-gray-700 mb-1"></label>
+            <input asp-for="PaymentMethod"
+                   class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" />
+            <span asp-validation-for="PaymentMethod" class="text-red-600 text-sm"></span>
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+            <button type="submit"
+                    class="w-full py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition font-medium">
+                Create Payment
+            </button>
+        </div>
+
+    </form>
+
+    <!-- Back Link -->
+    <div class="mt-6 text-center">
+        <a asp-action="Index"
+           class="text-gray-700 hover:text-gray-900 font-medium transition">
+            ← Back to List
+        </a>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

@@ -66,7 +66,7 @@
                                         </div>
                                         <div class="text-center">
                                             <p class="text-sm text-gray-600">Total</p>
-                                            <p class="font-bold text-green-600 text-lg">@itemTotal.ToString("C2")</p>
+                                            <p class="font-bold text-green-600 text-lg">$@itemTotal.ToString()</p>
                                         </div>
                                     </div>
                                 </div>
@@ -205,12 +205,12 @@
                     <div class="space-y-3 mb-6">
                         <div class="flex justify-between items-center">
                             <span class="text-gray-600">Subtotal</span>
-                            <span class="font-semibold text-gray-900">@totalAmount.ToString("C2")</span>
+                            <span class="font-semibold text-gray-900">$@totalAmount.ToString()</span>
                         </div>
                         
                         <div class="flex justify-between items-center">
                             <span class="text-gray-600">Tax (10%)</span>
-                            <span class="font-semibold text-gray-900">@tax.ToString("C2")</span>
+                            <span class="font-semibold text-gray-900">$@tax.ToString()</span>
                         </div>
                         
                         <div class="flex justify-between items-center">
@@ -221,7 +221,7 @@
                         <div class="border-t border-gray-200 pt-3">
                             <div class="flex justify-between items-center">
                                 <span class="text-lg font-bold text-gray-900">Total</span>
-                                <span class="text-2xl font-bold text-green-600">@finalTotal.ToString("C2")</span>
+                                <span class="text-2xl font-bold text-green-600">$@finalTotal.ToString()</span>
                             </div>
                         </div>
                     </div>
@@ -246,9 +246,9 @@
                     <div class="space-y-3">
                         <button id="pay-now"
                                 class="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-4 px-6 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2 text-lg"
-                                data-total="@finalTotal.ToString("C2")">
+                                data-total="$@finalTotal.ToString()">
                             <i class="fas fa-lock"></i>
-                            <span>Pay @finalTotal.ToString("C2")</span>
+                            <span>Pay $@finalTotal.ToString()</span>
                         </button>
                         
                         <a href="@Url.Action("Index", "Cart")" 

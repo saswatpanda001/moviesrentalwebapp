@@ -120,20 +120,41 @@ public partial class MovieRentalContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.UserId).HasName("PK__Users__1788CC4C0C6F1E16");
+            entity.HasKey(e => e.UserId)
+                  .HasName("PK__Users__1788CC4C0C6F1E16");
 
-            entity.HasIndex(e => e.Email, "UQ__Users__A9D105348BEB5DC2").IsUnique();
+            // Unique email
+            entity.HasIndex(e => e.Email)
+                  .IsUnique()
+                  .HasDatabaseName("UQ_Users_Email");
+
+            // Unique phone (if required)
+            entity.HasIndex(e => e.Phone)
+                  .IsUnique()
+                  .HasDatabaseName("UQ_Users_Phone");
+
+           
+            entity.HasIndex(e => e.Name)
+                  .IsUnique()
+                  .HasDatabaseName("UQ_Users_Name");
 
             entity.Property(e => e.CreatedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-            entity.Property(e => e.Email).HasMaxLength(100);
-            entity.Property(e => e.Name).HasMaxLength(100);
-            entity.Property(e => e.Phone).HasMaxLength(20);
+                  .HasDefaultValueSql("(getdate())")
+                  .HasColumnType("datetime");
+
+            entity.Property(e => e.Email)
+                  .HasMaxLength(100);
+
+            entity.Property(e => e.Name)
+                  .HasMaxLength(100);
+
+            entity.Property(e => e.Phone)
+                  .HasMaxLength(10);
         });
 
 
-       
+
+
 
         modelBuilder.Entity<Cart>(entity =>
         {
