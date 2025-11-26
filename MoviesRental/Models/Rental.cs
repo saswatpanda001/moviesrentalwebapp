@@ -35,4 +35,25 @@ public partial class Rental
 
 
     public virtual Payment? Payment { get; set; }
+
+    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    {
+        if (DueDate <= RentedOn)
+        {
+            yield return new ValidationResult(
+                "DueDate must be after RentedOn.",
+                new[] { nameof(DueDate), nameof(RentedOn) }
+            );
+        }
+
+        if (ReturnedOn.HasValue && ReturnedOn < RentedOn)
+        {
+            yield return new ValidationResult(
+                "ReturnedOn cannot be earlier than RentedOn.",
+                new[] { nameof(ReturnedOn), nameof(RentedOn) }
+            );
+        }
+    }
+
+
 }

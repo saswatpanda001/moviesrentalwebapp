@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MoviesRental.Models;
 
@@ -11,9 +12,11 @@ using MoviesRental.Models;
 namespace MoviesRental.Migrations
 {
     [DbContext(typeof(MovieRentalContext))]
-    partial class MovieRentalContextModelSnapshot : ModelSnapshot
+    [Migration("20251126225213_validations1_new")]
+    partial class validations1_new
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -325,8 +328,6 @@ namespace MoviesRental.Migrations
                     b.ToTable("Users", t =>
                         {
                             t.HasCheckConstraint("CK_Users_Email_MinLength", "LEN([Email]) >= 4");
-
-                            t.HasCheckConstraint("CK_Users_Email_Valid", "[Email] LIKE '%_@__%.__%'");
 
                             t.HasCheckConstraint("CK_Users_Name_MinLength", "LEN([Name]) >= 4");
 

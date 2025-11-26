@@ -3,16 +3,56 @@
   "WorkspaceRootPath": "C:\\MoviesRental\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\MoviesRental\\MoviesRental\\Migrations\\20251126230216_validations1_new1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MoviesRental\\Migrations\\20251126230216_validations1_new1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|c:\\moviesrental\\moviesrental\\models\\movierentalcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|solutionrelative:moviesrental\\models\\movierentalcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|c:\\moviesrental\\moviesrental\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|solutionrelative:moviesrental\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|c:\\moviesrental\\moviesrental\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|solutionrelative:moviesrental\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|c:\\moviesrental\\moviesrental\\models\\rental.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|solutionrelative:moviesrental\\models\\rental.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\MoviesRental\\MoviesRental\\Migrations\\20251126225213_validations1_new.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MoviesRental\\Migrations\\20251126225213_validations1_new.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|c:\\moviesrental\\moviesrental\\models\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|solutionrelative:moviesrental\\models\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|c:\\moviesrental\\moviesrental\\models\\registerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|solutionrelative:moviesrental\\models\\registerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|c:\\moviesrental\\moviesrental\\models\\movieapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|solutionrelative:moviesrental\\models\\movieapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|c:\\moviesrental\\moviesrental\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|solutionrelative:moviesrental\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|c:\\moviesrental\\moviesrental\\models\\movie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|solutionrelative:moviesrental\\models\\movie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|c:\\moviesrental\\moviesrental\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|solutionrelative:moviesrental\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|c:\\moviesrental\\moviesrental\\views\\cart\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|solutionrelative:moviesrental\\views\\cart\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|c:\\moviesrental\\moviesrental\\views\\account\\admindashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -21,14 +61,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|c:\\moviesrental\\moviesrental\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|solutionrelative:moviesrental\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|c:\\moviesrental\\moviesrental\\models\\movie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|solutionrelative:moviesrental\\models\\movie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|c:\\moviesrental\\moviesrental\\models\\movierentalcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|solutionrelative:moviesrental\\models\\movierentalcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|c:\\moviesrental\\moviesrental\\views\\payments\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -41,14 +73,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|c:\\moviesrental\\moviesrental\\controllers\\rentalscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|solutionrelative:moviesrental\\controllers\\rentalscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|c:\\moviesrental\\moviesrental\\models\\rental.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|solutionrelative:moviesrental\\models\\rental.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|c:\\moviesrental\\moviesrental\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|solutionrelative:moviesrental\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|c:\\moviesrental\\moviesrental\\views\\rentals\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -71,10 +95,6 @@
       "RelativeMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|solutionrelative:moviesrental\\views\\account\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|c:\\moviesrental\\moviesrental\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|solutionrelative:moviesrental\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|c:\\moviesrental\\moviesrental\\views\\account\\editprofile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{C0358165-00F5-4DC8-9F4C-6108C487FCD6}|MoviesRental\\MoviesRental.csproj|solutionrelative:moviesrental\\views\\account\\editprofile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -90,11 +110,76 @@
       "DocumentGroups": [
         {
           "DockedWidth": 148,
-          "SelectedChildIndex": 14,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
+              "Title": "20251126230216_validations1_new1.cs",
+              "DocumentMoniker": "C:\\MoviesRental\\MoviesRental\\Migrations\\20251126230216_validations1_new1.cs",
+              "RelativeDocumentMoniker": "MoviesRental\\Migrations\\20251126230216_validations1_new1.cs",
+              "ToolTip": "C:\\MoviesRental\\MoviesRental\\Migrations\\20251126230216_validations1_new1.cs",
+              "RelativeToolTip": "MoviesRental\\Migrations\\20251126230216_validations1_new1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T23:02:16.836Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "20251126225213_validations1_new.cs",
+              "DocumentMoniker": "C:\\MoviesRental\\MoviesRental\\Migrations\\20251126225213_validations1_new.cs",
+              "RelativeDocumentMoniker": "MoviesRental\\Migrations\\20251126225213_validations1_new.cs",
+              "ToolTip": "C:\\MoviesRental\\MoviesRental\\Migrations\\20251126225213_validations1_new.cs",
+              "RelativeToolTip": "MoviesRental\\Migrations\\20251126225213_validations1_new.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T22:52:13.613Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RegisterViewModel.cs",
+              "DocumentMoniker": "C:\\MoviesRental\\MoviesRental\\Models\\RegisterViewModel.cs",
+              "RelativeDocumentMoniker": "MoviesRental\\Models\\RegisterViewModel.cs",
+              "ToolTip": "C:\\MoviesRental\\MoviesRental\\Models\\RegisterViewModel.cs",
+              "RelativeToolTip": "MoviesRental\\Models\\RegisterViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T22:26:12.917Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Checkout.cshtml",
+              "DocumentMoniker": "C:\\MoviesRental\\MoviesRental\\Views\\Cart\\Checkout.cshtml",
+              "RelativeDocumentMoniker": "MoviesRental\\Views\\Cart\\Checkout.cshtml",
+              "ToolTip": "C:\\MoviesRental\\MoviesRental\\Views\\Cart\\Checkout.cshtml",
+              "RelativeToolTip": "MoviesRental\\Views\\Cart\\Checkout.cshtml",
+              "ViewState": "AgIAAH8BAAAAAAAAAAAAAC0AAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-26T22:05:11.691Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MovieAPI.cs",
+              "DocumentMoniker": "C:\\MoviesRental\\MoviesRental\\Models\\MovieAPI.cs",
+              "RelativeDocumentMoniker": "MoviesRental\\Models\\MovieAPI.cs",
+              "ToolTip": "C:\\MoviesRental\\MoviesRental\\Models\\MovieAPI.cs",
+              "RelativeToolTip": "MoviesRental\\Models\\MovieAPI.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-26T04:25:38.39Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "AdminDashboard.cshtml",
               "DocumentMoniker": "C:\\MoviesRental\\MoviesRental\\Views\\Account\\AdminDashboard.cshtml",
               "RelativeDocumentMoniker": "MoviesRental\\Views\\Account\\AdminDashboard.cshtml",
@@ -102,38 +187,37 @@
               "RelativeToolTip": "MoviesRental\\Views\\Account\\AdminDashboard.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-26T03:43:17.243Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-26T03:43:17.243Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "Cart.cs",
               "DocumentMoniker": "C:\\MoviesRental\\MoviesRental\\Models\\Cart.cs",
               "RelativeDocumentMoniker": "MoviesRental\\Models\\Cart.cs",
               "ToolTip": "C:\\MoviesRental\\MoviesRental\\Models\\Cart.cs",
               "RelativeToolTip": "MoviesRental\\Models\\Cart.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAYAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAIwAcAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-26T03:40:44.046Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 10,
               "Title": "Movie.cs",
               "DocumentMoniker": "C:\\MoviesRental\\MoviesRental\\Models\\Movie.cs",
               "RelativeDocumentMoniker": "MoviesRental\\Models\\Movie.cs",
               "ToolTip": "C:\\MoviesRental\\MoviesRental\\Models\\Movie.cs",
               "RelativeToolTip": "MoviesRental\\Models\\Movie.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAACIAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAYAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-26T03:30:44.724Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 15,
               "Title": "Details.cshtml",
               "DocumentMoniker": "C:\\MoviesRental\\MoviesRental\\Views\\Payments\\Details.cshtml",
               "RelativeDocumentMoniker": "MoviesRental\\Views\\Payments\\Details.cshtml",
@@ -141,12 +225,11 @@
               "RelativeToolTip": "MoviesRental\\Views\\Payments\\Details.cshtml",
               "ViewState": "AgIAABsAAAAAAAAAAAAAACwAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-26T03:27:15.67Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-26T03:27:15.67Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 16,
               "Title": "Details.cshtml",
               "DocumentMoniker": "C:\\MoviesRental\\MoviesRental\\Views\\Rentals\\Details.cshtml",
               "RelativeDocumentMoniker": "MoviesRental\\Views\\Rentals\\Details.cshtml",
@@ -154,25 +237,24 @@
               "RelativeToolTip": "MoviesRental\\Views\\Rentals\\Details.cshtml",
               "ViewState": "AgIAADAAAAAAAAAAAAAAAD4AAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-26T03:26:21.735Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-26T03:26:21.735Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 3,
               "Title": "Payment.cs",
               "DocumentMoniker": "C:\\MoviesRental\\MoviesRental\\Models\\Payment.cs",
               "RelativeDocumentMoniker": "MoviesRental\\Models\\Payment.cs",
               "ToolTip": "C:\\MoviesRental\\MoviesRental\\Models\\Payment.cs",
               "RelativeToolTip": "MoviesRental\\Models\\Payment.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAwwBoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAgwBwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-26T03:24:21.149Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 19,
               "Title": "PaymentsController.cs",
               "DocumentMoniker": "C:\\MoviesRental\\MoviesRental\\Controllers\\PaymentsController.cs",
               "RelativeDocumentMoniker": "MoviesRental\\Controllers\\PaymentsController.cs",
@@ -180,12 +262,11 @@
               "RelativeToolTip": "MoviesRental\\Controllers\\PaymentsController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T03:21:25.515Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-26T03:21:25.515Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 17,
               "Title": "RentalsController.cs",
               "DocumentMoniker": "C:\\MoviesRental\\MoviesRental\\Controllers\\RentalsController.cs",
               "RelativeDocumentMoniker": "MoviesRental\\Controllers\\RentalsController.cs",
@@ -193,12 +274,11 @@
               "RelativeToolTip": "MoviesRental\\Controllers\\RentalsController.cs",
               "ViewState": "AgIAAEwAAAAAAAAAAAAAAFQAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T03:19:47.902Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-26T03:19:47.902Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 18,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\MoviesRental\\MoviesRental\\Views\\Rentals\\Create.cshtml",
               "RelativeDocumentMoniker": "MoviesRental\\Views\\Rentals\\Create.cshtml",
@@ -206,51 +286,50 @@
               "RelativeToolTip": "MoviesRental\\Views\\Rentals\\Create.cshtml",
               "ViewState": "AgIAACsAAAAAAAAAAAAowEoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-26T03:19:31.268Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-26T03:19:31.268Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 4,
               "Title": "Rental.cs",
               "DocumentMoniker": "C:\\MoviesRental\\MoviesRental\\Models\\Rental.cs",
               "RelativeDocumentMoniker": "MoviesRental\\Models\\Rental.cs",
               "ToolTip": "C:\\MoviesRental\\MoviesRental\\Models\\Rental.cs",
               "RelativeToolTip": "MoviesRental\\Models\\Rental.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAowCMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACMAAAAAAAAAAAAcwDcAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-26T03:12:28.456Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 9,
               "Title": "Review.cs",
               "DocumentMoniker": "C:\\MoviesRental\\MoviesRental\\Models\\Review.cs",
               "RelativeDocumentMoniker": "MoviesRental\\Models\\Review.cs",
               "ToolTip": "C:\\MoviesRental\\MoviesRental\\Models\\Review.cs",
               "RelativeToolTip": "MoviesRental\\Models\\Review.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-26T03:12:21.439Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "MovieRentalContext.cs",
               "DocumentMoniker": "C:\\MoviesRental\\MoviesRental\\Models\\MovieRentalContext.cs",
               "RelativeDocumentMoniker": "MoviesRental\\Models\\MovieRentalContext.cs",
               "ToolTip": "C:\\MoviesRental\\MoviesRental\\Models\\MovieRentalContext.cs",
               "RelativeToolTip": "MoviesRental\\Models\\MovieRentalContext.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAYwDEAAAALAAAAAAAAAA==",
+              "ViewState": "AgIAANAAAAAAAAAAAAAYwOUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-26T03:10:57.879Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 20,
               "Title": "ReviewViewModel.cs",
               "DocumentMoniker": "C:\\MoviesRental\\MoviesRental\\Models\\ReviewViewModel.cs",
               "RelativeDocumentMoniker": "MoviesRental\\Models\\ReviewViewModel.cs",
@@ -262,32 +341,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 11,
               "Title": "CartController.cs",
               "DocumentMoniker": "C:\\MoviesRental\\MoviesRental\\Controllers\\CartController.cs",
               "RelativeDocumentMoniker": "MoviesRental\\Controllers\\CartController.cs",
               "ToolTip": "C:\\MoviesRental\\MoviesRental\\Controllers\\CartController.cs",
               "RelativeToolTip": "MoviesRental\\Controllers\\CartController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAK4AAAAAAAAAAAAcwIwAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T02:57:39.644Z"
+              "WhenOpened": "2025-11-26T02:57:39.644Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\MoviesRental\\MoviesRental\\Models\\User.cs",
               "RelativeDocumentMoniker": "MoviesRental\\Models\\User.cs",
               "ToolTip": "C:\\MoviesRental\\MoviesRental\\Models\\User.cs",
               "RelativeToolTip": "MoviesRental\\Models\\User.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAgwAkAAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAQwBgAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-26T02:54:49.223Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 21,
               "Title": "SessionManager.cs",
               "DocumentMoniker": "C:\\MoviesRental\\MoviesRental\\Models\\SessionManager.cs",
               "RelativeDocumentMoniker": "MoviesRental\\Models\\SessionManager.cs",
@@ -299,7 +379,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 22,
               "Title": "ResetPassword.cshtml",
               "DocumentMoniker": "C:\\MoviesRental\\MoviesRental\\Views\\Account\\ResetPassword.cshtml",
               "RelativeDocumentMoniker": "MoviesRental\\Views\\Account\\ResetPassword.cshtml",
@@ -311,7 +391,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 14,
               "Title": "AccountController.cs",
               "DocumentMoniker": "C:\\MoviesRental\\MoviesRental\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "MoviesRental\\Controllers\\AccountController.cs",
@@ -319,12 +399,11 @@
               "RelativeToolTip": "MoviesRental\\Controllers\\AccountController.cs",
               "ViewState": "AgIAADkBAAAAAAAAAAAcwDgBAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T02:27:56.747Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-26T02:27:56.747Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 23,
               "Title": "EditProfile.cshtml",
               "DocumentMoniker": "C:\\MoviesRental\\MoviesRental\\Views\\Account\\EditProfile.cshtml",
               "RelativeDocumentMoniker": "MoviesRental\\Views\\Account\\EditProfile.cshtml",
@@ -336,7 +415,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 24,
               "Title": "MoviesRental",
               "DocumentMoniker": "C:\\MoviesRental\\MoviesRental\\MoviesRental.csproj",
               "RelativeDocumentMoniker": "MoviesRental\\MoviesRental.csproj",

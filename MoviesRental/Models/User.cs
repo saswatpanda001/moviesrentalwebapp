@@ -18,6 +18,11 @@ public partial class User
     public string PasswordHash { get; set; } = null!;
 
     [Required]
+    [MinLength(4, ErrorMessage = "Email must be at least 4 characters.")]
+    [RegularExpression(
+    @"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$",
+    ErrorMessage = "Enter a valid email address."
+    )]
     public string Email { get; set; } = null!;
 
     [Required(ErrorMessage = "Phone number is required.")]

@@ -12,9 +12,11 @@ namespace MoviesRental.Models
         [MinLength(4, ErrorMessage = "Title must be at least 4 characters long.")]
         public string Title { get; set; } = null!;
 
+        [Required]
         [MinLength(4, ErrorMessage = "Genre must be at least 4 characters long.")]
         public string? Genre { get; set; }
 
+        [Required]
         [Range(1801, 2025, ErrorMessage = "Release year must be between 1801 and 2025.")]
         public int? ReleaseYear { get; set; }
 
@@ -23,6 +25,7 @@ namespace MoviesRental.Models
         [MinLength(6, ErrorMessage = "Desc must be at least 6 characters long.")]
         public string? Description { get; set; }
 
+        [Required]
         [Range(0, int.MaxValue, ErrorMessage = "Stock cannot be negative.")]
         public int Stock { get; set; }
 

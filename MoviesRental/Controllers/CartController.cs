@@ -124,7 +124,7 @@ namespace MoviesRental.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> ProcessPayment(string paymentMethod, string fullName, string email, string phone, string address, string city, string zipcode)
+        public async Task<IActionResult> ProcessPayment(string paymentMethod, string fullName, string phone, string address, string city, string zipcode)
         {
             var userId = SessionManager.UserId;
             if (userId == null)
@@ -138,7 +138,7 @@ namespace MoviesRental.Controllers
                 return Json(new { success = false, message = "Please select a payment method" });
             }
 
-            if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(address))
+            if (string.IsNullOrEmpty(fullName)  || string.IsNullOrEmpty(address))
             {
                 return Json(new { success = false, message = "Please fill in all required fields" });
             }

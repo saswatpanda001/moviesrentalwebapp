@@ -6,7 +6,9 @@ namespace MoviesRental.Models
 {
     public partial class Payment
     {
+       
         public int PaymentId { get; set; }
+
 
         public int RentalId { get; set; }
 
@@ -17,8 +19,12 @@ namespace MoviesRental.Models
         [Range(0.01, double.MaxValue, ErrorMessage = "Amount must be greater than 0.")]
         public decimal Amount { get; set; }
 
+        [Required]
+        [MinLength(3, ErrorMessage = "PaymentMethod must be at least 3 chars.")]
         public string PaymentMethod { get; set; } = null!;   // "Card", "UPI", "Cash"
 
+        [Required]
+        [MinLength(3, ErrorMessage = "PaymentMethod must be at least 3 chars.")]
         public string Status { get; set; } = "Completed";    // "Completed", "Pending", "Failed"
 
         public DateTime PaidOn { get; set; }
